@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+
+* {
+    font-family: "Poppins", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(102, 97, 99);
+    height: 100px;
+
+}
+li:hover{
+    color: #AC3B61;
+    cursor: pointer;
+}
+
+.links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.links ul li a {
+    color: #EEE2DC;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #AC3B61;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.links ul li:hover::after {
+    width: 100%;
+}
+
+
+.head {
+    min-height: 100vh;
+
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    position: relative;
+}
+
+a.logo {
+    text-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    color: white;
+    width: 150px;
+    font-size: 30px;
+}
+
+
+.footer{
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 80px;
+    margin: 0;
+    background: #AC3B61;
+    text-align: center;
+}
+.footer p{
+    color: whitesmoke;
+    margin: 20px auto;
+    padding: 20px auto;
+}
+
+
+
+/*BOOK*/
+
+.menu{
+    width: 100% ;
+    padding: 70px 0;
+}
+
+.menu h1{
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+}
+
+.menu h1 span {
+    color: #AC3B61;
+    margin-left: 15px;
+
+}
+
+.menu h1 span::after{
+
+    content: '';
+    width: 100%;
+    height: 4px;
+    background: #AC3B61;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+
+.menu .menu-box{
+
+    width: 95%;
+
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-gap: 15px;
+
+}
+
+.menu .menu-box .menu-card{
+
+    width: 95%;
+    height: fit-content;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu .menu-box .menu-card .menu-image {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+
+}
+.menu .menu-box .menu-card .menu-image img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+
+.menu .menu-box .menu-card .menu-image:hover img{
+    transform: scale(1.1);
+}
+
+.menu .menu-box .menu-card .menu-info h2 {
+    width: 60%;
+    text-align: center;
+    margin: 10px auto 10px auto;
+    font-size: 25px;
+    color: #AC3B61;
+}
+.menu .menu-box .menu-card .menu-info p{
+    text-align: center;
+    margin-top: 8px;
+    line-height: 21px;
+}
+
+.menu .menu-box .menu-card .menu-info h3{
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.menu .menu-box .menu-card .menu-info .menu-icon{
+    color: #fac031;
+    text-align: center;
+    margin: 10px 0 20px 0;
+
+}
+
+.menu .menu-box .menu-card .menu-info .menu-btn{ 
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: whitesmoke;
+    background: #484872;
+    padding: 8px 20px;
+    margin: 0 auto;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+    width: 170px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.8);
+}
+
+.menu .menu-box .menu-card .menu-info .menu-btn:hover {
+    background: #AC3B61; /* Change the background color on hover */
+    color: #FFF; /* Change the text color on hover */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transform: scale(1.1); /* Add a slight scale effect on hover */
+}

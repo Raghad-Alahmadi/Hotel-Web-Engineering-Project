@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book A Room</title>
+    <link rel="stylesheet" href="/css/styleRooms.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -37,33 +38,6 @@
             margin: 20px;
             padding: 20px;
             text-align: center;
-        }
-
-        nav {
-            margin-bottom: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .navbar {
-            display: inline-block;
-            margin-right: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: #3498db;
-            font-weight: bold;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .navbar a:hover {
-            color: #2980b9;
         }
 
         .container {
@@ -171,20 +145,27 @@
             background-color: #c0392b;
             transform: scale(1.05);
         }
+
+
     </style>
 </head>
 
 <body>
 
-    <section>
-        <header>
-            <img src="/Hotel logo.png " alt="Hotel Logo">
-            <nav>
+    <section class="head">
+        <nav>
+            <a href="/html/home.html" class="logo">Magnolia</a>
+    
+            <div class="links">
                 <ul>
-                    <li class="navbar"><a class="navbar a" href="#home">Home</a></li>
-                    <li class="navbar"><a class="navbar a" href="#link">Link</a></li>
+                    <li><a href="home.html">HOME</a></li>
+                    <li><a href="/html/AboutUs.html">ABOUT US</a></li>
+                    <li><a href="">CONTACT US</a></li>
+                    <li><a href="/html/BookingPage.html">BOOKINGS</a></li>
+                    <li><a href="/html/login.html">LOGIN</a></li>
                 </ul>
-            </nav>
+            </div>
+        </nav>
         </header>
         <h1 id="home">Book A Room</h1>
     </section>
