@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="/css/style.css">
+
 </head>
 
-
+<body>
     <section class="head">
         <nav>
-    
-            <a href="home.html" class="logo">Magnolia</a>
+            <a href="/html/home.html" class="logo">
+                <img src="/Hotel logo.png" alt="Magnolia Logo">
+            </a>
     
             <div class="links">
                 <ul>
@@ -19,30 +21,141 @@
                     <li><a href="/html/AboutUs.html">ABOUT US</a></li>
                     <li><a href="">CONTACT US</a></li>
                     <li><a href="/html/BookingPage.html">BOOKINGS</a></li>
-                    <li><a href="">SPECIAL OFFERS</a></li>
-    
+                    <li><a href="/html/login.html">LOGIN</a></li>
                 </ul>
             </div>
         </nav>
-        <div>
-            <div class="content">
-                <h1>Welcome to Magnolia Hotel !</h1>
-                <p>Your sanctuary of serenity amidst the bustling world <br>Indulge in luxury, savor tranquility, and create timeless memories.</p> 
-            
+        
+        <div class="slideshow-container">
 
-                <a href="/html/BookingPage.html"><button type="button">Indulge in luxury – Your room is just a click away</button></a>
-
+            <div class="mySlides fade">
+                <div class="overlay"></div>
+              <div class="numbertext">1 / 3</div>
+              <img src="/images/slide1.webp" style="width:100%">
+              <div class="text">Unwind in Luxury</div>
             </div>
-    
+            
+            <div class="mySlides fade">
+                <div class="overlay"></div>
+              <div class="numbertext">2 / 3</div>
+              <img src="/images/slide2.jpg" style="width:100%">
+              <div class="text">Discover Serenity</div>
+            </div>
+            
+            <div class="mySlides fade">
+                <div class="overlay"></div>
+              <div class="numbertext">3 / 3</div>
+              <img src="/images/slide3.jpg" style="width:100%">
+              <div class="text">Culinary Excellence in Every Bite</div>
+            </div>
+            <br>
+            <div style="text-align:center">
+                <span class="dot"></span> 
+                <span class="dot"></span> 
+                <span class="dot"></span> 
+              </div>
+            </div>
+
+
+
+        <div class="content">
+            <h1>Welcome to Magnolia Hotel !</h1>
+            <p>Your sanctuary of serenity amidst the bustling world <br>Indulge in luxury, savor tranquility, and create timeless memories.</p> 
+            <a href="/html/BookingPage.html"><button type="button">Indulge in luxury, Your room is just a click away</button></a>
         </div>
+    </section>
+
+    <section class="content2">
+        <h2>Who Are We ?</h2>
+        <p>Immerse yourself in the epitome of luxury at our hotel, 
+            where world-class amenities and personalized service redefine hospitality.
+             Welcome to a haven where every stay is a crafted experience, inviting you to 
+             indulge in comfort and create lasting memories.</p>
+        
+             <br>
+             <a href="AboutUs.html" class="ctn">Learn More</a>
+                
 
     </section>
-    
-<body>
-    <footer>
-        <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
-    </footer>
 
+
+    <section class="events">
+        <div class="title">
+            <h1>Discover Our Services</h1>
+            <div class="line"></div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <img src="/images/img1.webp" alt="">
+                <h4>Luxurious Rooms and Suites</h4>
+                <p>
+                    Discover a haven of refined elegance in our luxurious rooms and suites.
+                    Each space is a curated masterpiece, blending lavish comfort with timeless style.
+                    Unwind in an ambiance where every detail whispers sophistication, 
+                    promising an experience beyond the ordinary. Welcome to a retreat where 
+                    luxury is not just an amenity; it's an art form.</p>
+                     <a href="#" class="ctn">Learn More</a>
+            </div>
+                 <div class="col">
+                <img src="/images/img2.webp" alt="">
+
+                    <h4>World-Class Dining</h4>
+                    <p>Savor the epitome of culinary excellence at our world-class dining. 
+                        Each dish is a masterpiece, meticulously crafted to redefine your palate's expectations. 
+                        Immerse yourself in an experience where every bite is a journey into unparalleled flavor and sophistication. 
+                        Welcome to a dining haven where excellence is the standard.</p>
+                        <a href="#" class="ctn">Learn More</a>
+
+            </div>
+            
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var content2 = document.querySelector('.content2');
+            content2.classList.add('animate-in');
+        });
+    </script>
+
+
+<section class="footer">
+    <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
+</section>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+        
+        function showSlides() {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}    
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+          setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+        </script>
+        
 </body>
 
 </html>

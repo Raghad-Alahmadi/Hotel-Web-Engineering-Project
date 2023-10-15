@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <!-- This CSS and font is purely for presentational purposes. -->
+    <link rel="stylesheet" href="css/presentation.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/css/stylesLogin.css">
+</head>
+<body>
+
+    <div class="log">
+        <form action="/php/login.php" method="post">
+            <h1>Login</h1>
+
+            <div class="box">
+                <label for=""></label><input type="text" name="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="box">
+                <label for=""></label>
+                <input type="password" name="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt' id="passwordToggle"></i>
+            </div>
+
+            <div class="forget-remember">
+                <label for=""></label><input type="checkbox">Remember me
+                <a href="#">Forget Password ?</a>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="register">
+                <p>Don't have an account ? <a href="/html/Register.html">Register</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('passwordToggle').addEventListener('click', function () {
+            const passwordInput = document.querySelector('input[type="password"]');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        });
+    </script>
+
+
+</body>
+</html>

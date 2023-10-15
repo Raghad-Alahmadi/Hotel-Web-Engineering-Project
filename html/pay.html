@@ -1,91 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Payment</title>
+<link rel="stylesheet" href="css/style.css">
+<script language="javascripts" type="text/javascript">
+  function paypal_submit(){
+   // var actionName='https://www.paypal.com/cgi-bin/webscr';
+   var actionName='https://www.sandbox.paypal.com/cgi-bin/webscr';
+ // 	var actionName='https://www.sandbox.paypal.com/cgi-bin/webscr';
+
+  	document.forms.frmOrderAutoSubmit.action=actionName;
+  	document.forms.frmOrderAutoSubmit.submit();
+  }	
+</script>
 </head>
-<body>
-    <div class="payment-form">
-        <h1>Payment Details</h1>
-        <form action="process_payment.php" method="post">
-            <div class="card-icon">
-                <i class="fab fa-cc-visa" style="color: #1a1aff;"></i> <!-- Colored Visa icon -->
-                <i class="fab fa-cc-mastercard" style="color: #ff4d4d;"></i> <!-- Colored Mastercard icon -->
-            </div>
-            <label for="card_number">Card Number:</label>
-            <input type="text" id="card_number" name="card_number" required>
+<!--onload Paypal_submit()-->
+<body onload="paypal_submit();">
+<form style="padding: 0px; margin:0px;" name="frmOrderAutoSubmit" method="post">
+  <input type="hidden" name="return" value="<?//=base_url()?>paymentMethods/payment_utility/paymentSuccess/<?//=$order_row_id?>.html">
+  <input type="hidden" name="cancel_return" value="<?//=base_url()?>paymentMethods/payment_utility/cancelExpressCheckoutSale/<?//=$order_row_id?>.html">	
+  
+  <input type="hidden" name="upload" value="1">
+  <input type="hidden" name="cmd" value="_xclick">
+  <input type="hidden" name="business" value="hasnathrumman12345@gmail.com"> 
 
-            <label for="expiration_date">Expiration Date:</label>
-            <input type="text" id="expiration_date" name="expiration_date" placeholder="MM/YYYY" required>
+  <input type="hidden" name="quantity" value="4">
+  <input type="hidden" name="item_name" value="Desktop">
+  <input type="hidden" name="amount" value="1500">  
 
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
+  <input type="hidden" name="rm" value="2">
+  <input type="hidden" name="address_override" value="0">
+  <input type="hidden" name="first_name" value="<?//=$customer_info->shipping_name?>"> 
+  <input type="hidden" name="last_name" value="">
 
-            <label for="name_on_card">Name on Card:</label>
-            <input type="text" id="name_on_card" name="name_on_card" required>
+  <input type="hidden" name="address1" value="">
+  <input type="hidden" name="address2" value="">
+  <input type="hidden" name="city" value="">
+  <input type="hidden" name="state" value="">
+  <input type="hidden" name="zip" value=""> 	
 
-            <label for="amount">Amount:</label>
-            <input type="text" id="amount" name="amount" required>
+  <input type="hidden" name="night_phone_a" value="">
+  <input type="hidden" name="night_phone_b" value="">
+  <input type="hidden" name="night_phone_c" value=""> 	
 
-            <button type="submit">Submit Payment</button>
-        </form>
-    </div>
-    <script>
-        document.getElementById("payment-form").addEventListener("submit", function (e) {
-            e.preventDefault();
 
-            // Get input values
-            const cardNumber = document.getElementById("card_number").value;
-            const expirationDate = document.getElementById("expiration_date").value;
-            const cvv = document.getElementById("cvv").value;
+</form>
 
-            // Validate card number using Luhn algorithm
-            if (!isValidCardNumber(cardNumber)) {
-                alert("Invalid card number");
-                return;
-            }
-
-            // Validate expiration date
-            if (!isValidExpirationDate(expirationDate)) {
-                alert("Invalid expiration date");
-                return;
-            }
-
-            // Validate CVV
-            if (!isValidCVV(cvv)) {
-                alert("Invalid CVV");
-                return;
-            }
-
-            // You can perform additional checks or submit the form to your server here
-            // For real payment processing, integrate with a payment gateway
-
-            alert("Payment information is valid. Submitting form...");
-
-            // Uncomment the following line to submit the form to your server
-            // document.getElementById("payment-form").submit();
-        });
-
-        // Function to validate card number using Luhn algorithm
-        function isValidCardNumber(cardNumber) {
-            // Implement Luhn algorithm validation logic
-            return true; // Replace with actual validation
-        }
-
-        // Function to validate expiration date
-        function isValidExpirationDate(expirationDate) {
-            // Implement expiration date validation logic
-            return true; // Replace with actual validation
-        }
-
-        // Function to validate CVV
-        function isValidCVV(cvv) {
-            // Implement CVV validation logic
-            return true; // Replace with actual validation
-        }
-    </script>
 </body>
 </html>
