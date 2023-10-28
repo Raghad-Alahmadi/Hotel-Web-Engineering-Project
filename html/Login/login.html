@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Login</title>
-
-    <!-- This CSS and font is purely for presentational purposes. -->
-    <link rel="stylesheet" href="css/presentation.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
-    
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <title>Login Page</title>
     <link rel="stylesheet" href="/css/stylesLogin.css">
 </head>
 <body>
 
+<nav>
+    <a href="/html/home.html" class="logo">MAGNOLIA</a>
+    <div class="links">
+        <ul>
+            <li><a href="/html/home.html">HOME</a></li>
+            <li><a href="/html/AboutUs.html">ABOUT US</a></li>
+            <li><a href="/html/ContactUs.html">CONTACT US</a></li>
+            <li><a href="/html/Rooms.html">ROOMS</a></li>
+            <li><a href="/html/Login/login.html">LOGIN</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
     <div class="log">
         <form action="/php/login.php" method="post">
             <h1>Login</h1>
@@ -41,19 +45,18 @@
             <button type="submit" class="btn">Login</button>
 
             <div class="register">
-                <p>Don't have an account ? <a href="/html/Register.html">Register</a></p>
+                <p>Don't have an account ? <a href="/html/Login/Register.html">Register</a></p>
             </div>
         </form>
     </div>
+</div>
 
-    <script>
-        document.getElementById('passwordToggle').addEventListener('click', function () {
-            const passwordInput = document.querySelector('input[type="password"]');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-        });
-    </script>
-
+<section class="footer">
+    <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
+</section>
 
 </body>
+
 </html>
+
+

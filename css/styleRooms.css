@@ -10,12 +10,15 @@
 
 nav {
     display: flex;
-    padding: 2% 6%;
+    padding: 30px;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(102, 97, 99);
+    background-color: rgba(186, 178, 181, 0.7);
     height: 100px;
-
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 800; /* Ensure the nav stays on top of other elements */
 }
 li:hover{
     color: #AC3B61;
@@ -30,7 +33,7 @@ li:hover{
 }
 
 .links ul li a {
-    color: #EEE2DC;
+    color: #000000;
     text-decoration: none;
     font-size: 16px;
 }
@@ -201,7 +204,7 @@ a.logo {
 
 .menu{
     width: 100% ;
-    padding: 70px 0;
+    padding: 100px 0;
 }
 
 .menu h1{
@@ -230,74 +233,85 @@ a.logo {
     bottom: 15px;
 }
 
-.menu .menu-box{
-
+.menu .menu-box {
     width: 95%;
-
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr ;
-    grid-gap: 15px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.menu .menu-box .menu-card{
-
+.menu .menu-card {
+    display: flex;
     width: 95%;
-    height: fit-content;
+    margin: 20px auto;
     padding: 20px;
-    margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.menu .menu-image {
+    width: 40%; /* Adjust the width as needed */
+    margin-right: 20px; /* Add spacing between image and info */
+}
 .menu .menu-box .menu-card .menu-image {
-    width: 90%;
+
     height: auto;
     margin: 0 auto;
     overflow: hidden;
-
 }
-.menu .menu-box .menu-card .menu-image img{
 
+.menu .menu-box .menu-card .menu-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: 0.3s;
+    transition: transform 0.3s;
 }
 
-.menu .menu-box .menu-card .menu-image:hover img{
-    transform: scale(1.1);
+.menu .menu-box .menu-card .menu-image:hover img {
+    transform: scale(1.1); /* Scale the image on hover */
 }
 
-.menu .menu-box .menu-card .menu-info h2 {
-    width: 60%;
-    text-align: center;
-    margin: 10px auto 10px auto;
+.menu .menu-info {
+    width: 60%; /* Adjust the width as needed */
+}
+
+.menu .menu-info h2,
+.menu .menu-info p,
+.menu .menu-info h3,
+.menu .menu-info .menu-icon,
+.menu .menu-info .menu-btn {
+    margin-bottom: 15px; /* Add some spacing between elements */
+}
+.menu .menu-box .menu-card .menu-info {
+    padding-left: 20px; /* Adjust the padding to your preference */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    padding-top: 100px;
+}
+.menu .menu-card .menu-info h2 {
     font-size: 25px;
     color: #AC3B61;
 }
-.menu .menu-box .menu-card .menu-info p{
-    text-align: center;
-    margin-top: 8px;
+
+.menu .menu-card .menu-info p {
+    text-align: left;
     line-height: 21px;
+    margin-bottom: 15px;
 }
 
-.menu .menu-box .menu-card .menu-info h3{
-    text-align: center;
+.menu .menu-card .menu-info h3 {
+    text-align: left;
     margin-top: 10px;
-
 }
 
-.menu .menu-box .menu-card .menu-info .menu-icon{
+.menu .menu-card .menu-info .menu-icon {
     color: #fac031;
-    text-align: center;
-    margin: 10px 0 20px 0;
-
+    text-align: left;
+    margin-bottom: 10px;
 }
 
-.menu .menu-box .menu-card .menu-info .menu-btn{ 
-    display:flex;
+.menu .menu-card .menu-info .menu-btn {
+    display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -311,9 +325,9 @@ a.logo {
     box-shadow: rgba(0, 0, 0, 0.8);
 }
 
-.menu .menu-box .menu-card .menu-info .menu-btn:hover {
-    background: #AC3B61; /* Change the background color on hover */
-    color: #FFF; /* Change the text color on hover */
-    cursor: pointer; /* Show pointer cursor on hover */
-    transform: scale(1.1); /* Add a slight scale effect on hover */
+.menu .menu-card .menu-info .menu-btn:hover {
+    background: #AC3B61;
+    color: #FFF;
+    cursor: pointer;
+    transform: scale(1.1);
 }

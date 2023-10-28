@@ -1,58 +1,50 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Form submission
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+// login.php
 
-    // Database connection
-    $serverName = "your_sql_server_name";
-    $connectionOptions = array(
-        "Database" => "Hotel_Users",
-        "Uid" => "your_sql_username",
-        "PWD" => "your_sql_password"
-    );
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "users";
 
-    // Establishes the connection
-    $conn = sqlsrv_connect($serverName, $connectionOptions);
+// Create a connection to the MySQL database
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
-    if (!$conn) {
-        if ($errors != null) {
-            foreach ($errors as $error) {
-                echo "SQLSTATE: " . $error['SQLSTATE'] . "<br />";
-                echo "Code: " . $error['code'] . "<br />";
-                echo "Message: " . $error['message'] . "<br />";
-            }
-            die();
-        }
-    }
-
-    // SQL query to check login validity
-    $sql = "SELECT * FROM HotelUsers WHERE Username = ? AND Password = ?";
-    $params = array($username, $password);
-    
-    // Use prepared statement to prevent SQL injection
-    $query = sqlsrv_query($conn, $sql, $params);
-
-    if ($query === false) {
-        if ($errors != null) {
-            foreach ($errors as $error) {
-                echo "SQLSTATE: " . $error['SQLSTATE'] . "<br />";
-                echo "Code: " . $error['code'] . "<br />";
-                echo "Message: " . $error['message'] . "<br />";
-            }
-            die();
-        }
-    }
-
-    // Check if a matching user was found
-    if (sqlsrv_has_rows($query)) {
-        echo "Login successful!";
-        // Additional logic, such as redirecting to a dashboard, setting session variables, etc.
-    } else {
-        echo "Invalid login credentials!";
-    }
-
-    sqlsrv_close($conn);
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect and sanitize user inputs
+    $username = htmlspecialchars($_POST["username"]);
+    $password = htmlspecialchars($_POST["password"]);
+
+    // Perform validation and authentication against the database
+    $query = "SELECT * FROM users WHERE username = '$username'";
+
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        // Verify password using password_verify
+        if (password_verify($password, $row["password"])) {
+            // Authentication successful
+            echo "Login successful. Welcome, $username!";
+            // Redirect to a protected page or perform additional actions
+        } else {
+            // Authentication failed
+            echo "Invalid username or password. Please try again.";
+        }
+    } else {
+        // User not found
+        echo "Invalid username or password. Please try again.";
+    }
+} else {
+    // Redirect to the login page if accessed directly without submitting the form
+    header("Location: /html/Login/login.html");
+    exit();
+}
+
+// Close the database connection
+$conn->close();
 ?>

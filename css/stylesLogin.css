@@ -1,84 +1,139 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins");
-
-*{
-    font-family: "Poppins", sans-serif;
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
-
 
 body {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 50px; /* Add this line to remove the default margin */
-    background: url('/images/maxresdefault.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: url('/images/room2.jpg') center/cover; /* Added no-repeat */
+    backdrop-filter: blur(4px);
+    height: 100vh;
 }
 
-.log{
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Changed height to min-height */
+    
+}
+
+nav {
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(186, 178, 181, 0.6);
+    height: 40px;
+}
+
+nav .logo {
+    text-decoration: none;
+    color: #000;
+    font-size: 24px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+}
+
+.log {
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
-    color: #fff ;
+    color: #fff;
     border-radius: 10px;
     padding: 30px 40px;
+    background-color: rgba(186, 178, 181, 0.6);
 }
 .log h1{
     font-size: 36px;
     text-align: center;
 }
 
-.log .box{
-    position: relative;
+.log .box {
+    position: relative; /* Add this line */
+    display: flex; /* Replace position: flex; with display: flex; */
     width: 100%;
     height: 50px;
     margin: 30px 0;
+    
+}
+.box input::placeholder {
+    color: rgba(0, 0, 0, 0.8);
+
 }
 
-.box input{
+.log .box input {
     width: 100%;
     height: 100%;
-    background:transparent;
+    background: transparent;
     border: none;
     outline: none;
     border: 2px solid rgba(255, 255, 255, .2);
     border-radius: 40px;
     font-size: 16px;
-    color: #fff;
-    padding: 20px 45px 20px 20px;
+    color: #000000;
+    margin: 0px;
+    padding: auto;
+    padding-left: 70px;
 }
 
-.box input::placeholder{
-    color:#fff;
-}
-.box i {
-    position: absolute;
-    right: 20px;
+.log .box i {
+    position: absolute; /* Change position to absolute */
+    left: 30px; /* Adjusted left positioning */
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
+    color: #AC3B61;
 }
 
-.log .forget-remember{
+/* Adjust the color of the icons on hover if needed */
+.log .box:hover i {
+    color: #4A4A4A;
+}
+
+/* Adjust the color of the icons on hover if needed */
+.log .box:hover i {
+    color: #4A4A4A;
+}
+
+.log .forget-remember {
     display: flex;
+    align-items: center; /* Add align-items property */
     justify-content: space-between;
     font-size: 14.5px;
-    margin: -15px 0 15px;
+    margin-right: 10px; /* Adjusted margin */
+    color: #000000;
+
+}
+.forget-remember label {
+    display: flex;
+    align-items: center; /* Add align-items property */
 }
 .forget-remember label input{
-    accent-color: #fff;
+    accent-color: #000000;
     margin-right: 3px;
 }
 
 .forget-remember a{
-    color: #fff;
+    color: #000000;
     text-decoration: none;
+    margin-left: 90px;
 }
 
 .forget-remember a:hover{
@@ -89,16 +144,16 @@ body {
 .log .btn{
     width: 100%;
     height: 45px;
-    background: #fff;
+    background: #AC3B61;
     border: none;
     outline: none;
     border-radius: 40px;
-
     box-shadow: 0 0 1px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #fff;
     font-weight: 600;
+    margin-top: 20px;
 }
 
 .log .register{
@@ -116,4 +171,20 @@ body {
 
 .register p a:hover {
     text-decoration: underline;
+}
+
+
+.footer{
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 80px;
+    background: #AC3B61;
+    text-align: center;
+    margin-top: 30px;
+}
+.footer p{
+
+    color: whitesmoke;
+    margin: 20px auto;
+    padding: 20px auto;
 }
