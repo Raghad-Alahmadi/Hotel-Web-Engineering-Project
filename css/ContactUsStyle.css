@@ -47,7 +47,7 @@ nav ul li a{
     /* justify-content: center;
     align-items: center; */
     flex-direction: column;
-    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(img-one-only-the-palm-hotel-dubai-29.jpeg);
+    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(/images/img-one-only-the-palm-hotel-dubai-29.jpeg);
     background-size: cover ;
 }
 .contact .content{
