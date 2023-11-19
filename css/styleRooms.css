@@ -393,3 +393,242 @@ a.logo {
 #invoiceContent button:hover {
     background-color: #832C4B;
 }
+
+
+
+#editReservationContainer {
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.menu-btn {
+
+    justify-content: left;
+    align-items: center;
+    text-decoration: none;
+    color: whitesmoke;
+    background: #832C4B;
+    padding: 8px 20px;
+    margin: 80px;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+    width: 170px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.8);
+}
+
+.menu-btn:hover {
+    background: #888;
+    color: #FFF;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
+
+
+/* EDIT RESERVATION */
+.menu-info table {
+    width: calc(100% - 48px); /* Adjust the value based on your padding */
+    margin-top: 20px;
+    border-collapse: collapse;
+    /* Add overflow-x: auto; if needed */
+}
+.history-box {
+    margin: 10% auto;
+    transform: translate(0, -50%);
+    z-index: 9999;
+    background-color: #070730;
+    color: #fff;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 60%;
+    max-height: 80vh;
+
+}
+
+.history-box h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table-data {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 35px;
+    margin-top: 24px;
+    width: 100%;
+    color: #ffffff;
+}
+
+.table-data > div {
+    border-radius: 20px;
+    background: rgba(16, 16, 82, 0.726);
+    padding: 24px;
+    overflow-x: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-data .head {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    margin-bottom: 50px;
+}
+
+.table-data .head h3 {
+    margin-right: auto;
+    font-size: 30px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.table-data .order {
+    flex-grow: 1;
+    flex-basis: 500px;
+}
+
+.table-data .order table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-data .order table th {
+    padding-bottom: 12px;
+    font-size: 18px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-data .order table td {
+    padding: 16px 0;
+    font-size: 13px;
+}
+
+.table-data .order table tr td:first-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 6px;
+}
+
+.table-data .order table td img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+
+
+.table-data .order table tr td .status {
+    font-size: 12px;
+    padding: 6px 12px;
+    color: #000000;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+
+.table-data .todo {
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+.table-data .todo .todo-list {
+    width: 100%;
+}
+
+
+.table-data .todo .todo-list li .bx {
+    cursor: pointer;
+}
+
+.table-data .todo .todo-list li:last-child {
+    margin-bottom: 0;
+}
+
+
+.menu-info table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.menu-info th, .menu-info td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-info th {
+    background-color: #070730;
+    color: #fff;
+}
+
+.menu-info tbody tr:hover {
+    background-color: rgba(16, 16, 82, 0.5);
+}
+
+.menu-info td img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+
+
+.menu-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.menu-info {
+    background-color: whitesmoke;
+    color: #000000;
+
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 60%;
+    max-height: 80vh;
+    overflow-y: auto; /* Add this line to enable vertical scrolling if content exceeds the height */
+}
+
+.menu-info table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.menu-info th, .menu-info td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #888;
+}
+
+.menu-info th {
+    background-color: #888;
+    color: #fff;
+}
+
+.menu-info tbody tr:hover {
+    background-color: #832c4b77;
+}
+
+.menu-info td img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+.btn-container {
+    display: flex;
+    gap: 10px; /* Adjust the gap as needed */
+}

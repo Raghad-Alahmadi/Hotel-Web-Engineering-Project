@@ -1,6 +1,10 @@
 var currentBooking = {}; // Variable to store current booking details
 var prevModalContent = ''; // Variable to store previous modal content
 
+
+window.onload = function() {
+    checkLoggedInUser();
+};
 // Initialize Swiper
 
 function confirmBooking() {
@@ -103,4 +107,41 @@ function goBack() {
         document.getElementById('quantity').value = currentBooking.quantity;
         openModal(); // Open the modal 
     }
+}
+
+
+//
+
+
+function checkLoggedInUser() {
+    // Assuming you store the user's login status in localStorage
+    var isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    // Get the edit reservation list item
+    var editReservationListItem = document.getElementById('editReservationContainer');
+
+    // Display the "Edit Reservation" button if the user is logged in, otherwise hide it
+    if (isLoggedIn === 'true') {
+        editReservationListItem.style.display = 'block';
+    } else {
+        editReservationListItem.style.display = 'none';
+    }
+}
+
+// Function to simulate a login action
+function simulateLogin() {
+    // Set the user as logged in in localStorage
+    localStorage.setItem('isLoggedIn', 'true');
+    
+    // Refresh the page to reflect the changes
+    location.reload();
+}
+
+// Function to simulate a logout action
+function simulateLogout() {
+    // Remove the user's login status from localStorage
+    localStorage.removeItem('isLoggedIn');
+    
+    // Refresh the page to reflect the changes
+    location.reload();
 }
