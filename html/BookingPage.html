@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book A Room</title>
     <link rel="stylesheet" href="/css/styleRooms.css">
-    <style>
+
+<style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f5f5;
@@ -145,17 +146,15 @@
             background-color: #c0392b;
             transform: scale(1.05);
         }
+</style>
 
-
-    </style>
 </head>
-
 <body>
 
     <section class="head">
         <nav>
             <a href="/html/home.html" class="logo">Magnolia</a>
-    
+
             <div class="links">
                 <ul>
                     <li><a href="home.html">HOME</a></li>
@@ -164,6 +163,7 @@
                     <li><a href="/html/BookingPage.html">BOOKINGS</a></li>
                     <li><a href="/html/login.html">LOGIN</a></li>
                 </ul>
+
             </div>
         </nav>
         </header>
@@ -190,18 +190,19 @@
         <button id="room-reset">Reset</button>
     </div>
 
-    <label for="check-in-date">Check-In Date</label>
-    <input type="datetime-local" id="check-in-date">
+        <label for="check-in-date">Check-In Date</label>
+        <input type="datetime-local" id="check-in-date">
 
-    <label for="check-out-date">Check-Out Date</label>
-    <input type="datetime-local" id="check-out-date">
+        <label for="check-out-date">Check-Out Date</label>
+        <input type="datetime-local" id="check-out-date">
 
-    <input type="checkbox" id="room-with-view">
-    <label for="room-with-view">Room with a View?</label>
+        <input type="checkbox" id="room-with-view">
+        <label for="room-with-view">Room with a View?</label>
 
-    <button id="confirm">View Available Rooms</button>
+        <button id="confirm">View Available Rooms</button>
 
-    <label for="room-type">Select Room Type:</label>
+
+<label for="room-type">Select Room Type:</label>
     <div class="img-container">
         <input type="radio" value="single" id="single-room">
         <label for="single-room">Single Room</label>
@@ -220,12 +221,11 @@
         <img class="img" src="https://www.hotel7dublin.com/wp-content/uploads/Hotel-7-double-bedroom.jpg" alt="Double Room">
     </div>
 
+<button id="book-now">Book Now</button>
 
-
-    <button id="book-now">Book Now</button>
 
     <script>
-        // JavaScript code here
+        // JavaScript 
         document.addEventListener('DOMContentLoaded', function () {
             // Counter functions
             function updateCounter(counterId, incrementBtnId, decrementBtnId, resetBtnId) {
@@ -265,6 +265,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
