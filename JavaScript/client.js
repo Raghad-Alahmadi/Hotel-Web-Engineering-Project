@@ -51,6 +51,7 @@ function showInvoice() {
 function checkout() {
     // Redirect to the payment page or handle payment logic
     alert('Redirecting to the payment page.');
+    window.location.href = '/php/index.php';
 }
 
 function calculateTotalPrice(price, quantity) {
