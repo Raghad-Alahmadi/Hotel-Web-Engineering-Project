@@ -4,7 +4,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "your_dbname";
+$dbname = "hotel";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // SQL query to fetch available rooms
-$sql = "SELECT id, room_number, room_type, price FROM rooms WHERE is_booked = 0";
+$sql = "SELECT RoomID, Room_type, Price FROM rooms WHERE availability = 1";
 
 $result = $conn->query($sql);
 
