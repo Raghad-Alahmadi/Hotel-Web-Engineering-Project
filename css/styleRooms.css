@@ -705,3 +705,9 @@ a.logo {
         margin-top: 10px;
     }
 }
+
+@media screen and (max-height: 600px) {
+    #bookingModal {
+        max-height: 80vh;
+    }
+}
