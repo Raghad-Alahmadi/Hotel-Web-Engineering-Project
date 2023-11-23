@@ -45,6 +45,27 @@ function confirmBooking() {
     modal.appendChild(invoiceContent);
     showInvoice();
 
+    // Prepare the data to send in the POST request
+    var formData = new FormData();
+    formData.append("room", room);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("checkInDate", checkInDate);
+    formData.append("checkOutDate", checkOutDate);
+    formData.append("quantity", quantity);
+
+    // Send a POST request to the PHP script
+    fetch('/php/booking.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Assuming the PHP script echoes the received data for demonstration
+        console.log(data);
+        // Handle the response as needed
+    })
+    .catch(error => console.error('Error:', error));
 
     var totalAmount = calculateTotalPrice(price, quantity);
     
