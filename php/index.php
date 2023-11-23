@@ -64,6 +64,7 @@
                       var totalAmount = urlParams.get('totalAmount');
 
                       // Display the total amount on the payment page
+                      $totalAmount = isset($_GET['totalAmount']) ? $_GET['totalAmount'] : 0;
                       document.getElementById('totalAmount').innerHTML = `<b>${totalAmount} SAR</b>`;
                 </script>
         </form>
