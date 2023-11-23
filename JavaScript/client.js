@@ -11,8 +11,9 @@ function confirmBooking() {
     // Retrieve booking details
     var room = document.getElementById('modalRoom').textContent;
     var description = document.getElementById('modalDescription').textContent;
-    var price = document.getElementById('modalPrice').textContent;
-    var date = document.getElementById('bookingDate').value;
+    var price = document.getElementById('modalPrice').textContent.replace('Price: ', '');
+    var checkInDate = document.getElementById('checkInDate').value;
+    var checkOutDate = document.getElementById('checkOutDate').value;
     var quantity = document.getElementById('quantity').value;
 
     // Create invoice content
@@ -22,7 +23,8 @@ function confirmBooking() {
         <p><strong>Room:</strong> ${room}</p>
         <p><strong>Description:</strong> ${description}</p>
         <p><strong>Price:</strong> ${price}</p>
-        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Check-in Date:</strong> ${checkInDate}</p>
+        <p><strong>Check-out Date:</strong> ${checkOutDate}</p>
         <p><strong>Quantity:</strong> ${quantity}</p>
         <hr>
         <p><strong>Total:</strong> ${calculateTotalPrice(price, quantity)}</p>
@@ -33,15 +35,22 @@ function confirmBooking() {
         room: room,
         description: description,
         price: price,
-        date: date,
+        checkInDate: checkInDate,
+        checkOutDate: checkOutDate,
         quantity: quantity
     };
     // Append the invoice content to the existing modal content
     var modal = document.getElementById('bookingModal');
     modal.innerHTML = ''; // Clear existing content
     modal.appendChild(invoiceContent);
+    showInvoice();
 
-    openInvoice();
+
+    var totalAmount = calculateTotalPrice(price, quantity);
+    
+    // Redirect to the PHP page with the total amount as a query parameter
+    window.location.href = '/php/index.php?totalAmount=' + totalAmount;
+
 }
 
 function showInvoice() {
@@ -68,6 +77,21 @@ function calculateTotalPrice(price, quantity) {
     var total = unitPrice * quantity;
     return total.toFixed(2) + ' SAR'; // Format total with two decimal places
 }
+
+// Function to get room images based on room type
+function getRoomImages(roomType) {
+    // Define a mapping of room types to image sources
+    var roomImagesMap = {
+        'Single Room': ['/images/room1.jpg', '/images/room1(2).jpg'],
+        'Suite Room': ['/images/room2.jpg', '/images/room2(2).jpg'],
+        'Presidential Suite': ['/images/room3.jpg', '/images/room3(2).webp'],
+        'Double Room': ['/images/room4.jpg', '/images/room4(2).jpg'],
+    };
+
+    // Return the images based on the room type
+    return roomImagesMap[roomType] || [];
+}
+
 function openModal(button) {
     var modal = document.getElementById('bookingModal');
     var room = button.getAttribute('data-room');
@@ -77,6 +101,26 @@ function openModal(button) {
     // Store the current modal content before modifying it
     prevModalContent = modal.innerHTML;
 
+    // Get the container for Swiper slides
+    var swiperWrapper = document.querySelector('.swiper-wrapper');
+
+    // Clear existing slides
+    swiperWrapper.innerHTML = '';
+
+    // Get the room images based on the room type
+    var roomImages = getRoomImages(room);
+
+    // Create new Swiper slides based on room images
+    roomImages.forEach(function (imageSrc) {
+        var swiperSlide = document.createElement('div');
+        swiperSlide.className = 'swiper-slide';
+        var image = document.createElement('img');
+        image.src = imageSrc;
+        image.alt = room;
+        swiperSlide.appendChild(image);
+        swiperWrapper.appendChild(swiperSlide);
+    });
+
     // Set modal content dynamically
     document.getElementById('modalRoom').textContent = room;
     document.getElementById('modalDescription').textContent = description;
@@ -84,6 +128,15 @@ function openModal(button) {
 
     modal.style.display = 'block';
     modal.style.animation = 'modalFadeIn 0.5s';
+
+    // Initialize Swiper after updating the slides
+    var mySwiper = new Swiper('.swiper-container', {
+        // Add Swiper options if needed
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
 }
 
 function closeModal() {

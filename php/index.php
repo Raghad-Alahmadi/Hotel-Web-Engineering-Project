@@ -54,9 +54,18 @@
                 <br><input type="checkbox" checked="checked" name="savecard">Save card details for next time
                 </label>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>2000 SAR</b></span></p>
+                <p>Total <span id="totalAmount" class="price" style="color:black"><b></b></span></p>
                 <p class="VAT">The total cost includes a 15% VAT</p>
                 <input type="submit" value="Continue to checkout" class="btn">
+
+                <script>
+                      // Assuming you pass the total amount as a query parameter in the URL
+                      var urlParams = new URLSearchParams(window.location.search);
+                      var totalAmount = urlParams.get('totalAmount');
+
+                      // Display the total amount on the payment page
+                      document.getElementById('totalAmount').innerHTML = `<b>${totalAmount} SAR</b>`;
+                </script>
         </form>
     </div>
 </body>

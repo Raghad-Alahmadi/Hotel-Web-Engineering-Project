@@ -121,9 +121,7 @@
             </div>
         </div>
 
-        <section class="footer">
-            <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
-        </section>
+
 
         <div id="bookingModal" class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -133,7 +131,7 @@
                 <div class="swiper-wrapper">
                     <!-- Slide 1 -->
                     <div class="swiper-slide">
-                        <img src="/images/room1.jpg" alt="Room 1">
+                        <img src="/images/room1.jpg" alt="Room 1" style="max-width: 60%; height: auto;">
                     </div>
 
                 </div>
@@ -144,8 +142,15 @@
             <h2 id="modalRoom">Booking Details</h2>
             <p id="modalDescription">Description goes here.</p>
             <p id="modalPrice">Price: 0 SAR</p>
-            <label for="bookingDate">Select Date:</label>
-            <input type="date" id="bookingDate" name="bookingDate">
+
+            <!--  check-in and check-out date inputs -->
+            <div class="date-inputs">
+                <label for="checkInDate">Check-in Date:</label>
+                <input type="date" id="checkInDate" name="checkInDate" required>
+
+                <label for="checkOutDate">Check-out Date:</label>
+                <input type="date" id="checkOutDate" name="checkOutDate" required>
+            </div>
             <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1" value="1">
             <button id="confirmBookingBtn" onclick="confirmBooking(); showInvoice();">Confirm Booking</button>
@@ -166,8 +171,14 @@
                 <button onclick="goBack()">Go Back</button>
             </div>
         </div>
-    
+
+
+        <section class="footer">
+            <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
+        </section>
        
         <script src="/JavaScript/client.js"></script>
+
+
     </body>
 </html>

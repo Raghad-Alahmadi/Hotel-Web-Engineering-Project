@@ -329,18 +329,36 @@ a.logo {
 
 #bookingModal {
     position: fixed;
-    top: 30%; /* Adjust the percentage value to raise the modal higher */
+    top: 25%; /* Adjust the percentage value to raise the modal higher */
     left: 50%;
     transform: translate(-50%, -50%);
     max-height: 90vh;
     overflow-y: auto;
     width: 80%;
     max-width: 900px; /* Set a maximum width to the modal */
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
     overflow: hidden; /* Hide the scrollbar */
+    margin-bottom: 10px; /* Add margin to the bottom */
+
 }
 
+#confirmBookingBtn {
+    display: block;
+    margin: 15px auto; /* Center the button horizontally with auto margins */
+    background-color: #AC3B61;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#confirmBookingBtn:hover {
+    background-color: #832C4B;
+}
 #invoiceContent {
     text-align: center;
     margin-top: 20px;
@@ -417,7 +435,10 @@ a.logo {
     transform: scale(1.1);
 }
 
-
+.swiper-slide img {
+    width: 1530px; /* Set the width to 1530 pixels */
+    height: 500px; /* Set the height to 861 pixels */
+}
 
 
 /* EDIT RESERVATION */

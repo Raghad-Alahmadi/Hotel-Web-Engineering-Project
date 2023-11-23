@@ -160,12 +160,12 @@ button {
     border-radius: 20px;
     outline: none;
     cursor: pointer;
-    margin-top: 40px;
     margin-left: 100px;
+    margin-top: 200px;
 }
 
 .content {
-    margin-top: 300px;
+    margin-top: 200px;
     color: #fbfcfd;
     position: absolute;
     top: 50%;
