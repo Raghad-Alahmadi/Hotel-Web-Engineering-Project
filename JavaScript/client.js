@@ -119,6 +119,19 @@ function openModal(button) {
     var description = button.getAttribute('data-description');
     var price = button.getAttribute('data-price');
 
+
+
+        // Get the check-in and check-out date inputs
+        var checkInDate = new Date(document.getElementById('checkInDate').value);
+        var checkOutDate = new Date(document.getElementById('checkOutDate').value);
+    
+        // Check if the check-out date is before the check-in date
+        if (checkOutDate < checkInDate) {
+            alert('Check-out date cannot be before the check-in date.');
+            return; // Stop further execution
+        }
+
+
     // Store the current modal content before modifying it
     prevModalContent = modal.innerHTML;
 
@@ -166,6 +179,7 @@ function closeModal() {
 }
 
 function goBack() {
+    
     var modal = document.getElementById('bookingModal');
 
     // Check if previous content is defined before using it
@@ -175,15 +189,42 @@ function goBack() {
         // Set the modal content to the original booking details
         document.getElementById('modalRoom').textContent = currentBooking.room;
         document.getElementById('modalDescription').textContent = currentBooking.description;
-        document.getElementById('modalPrice').textContent = currentBooking.price;
+        document.getElementById('modalPrice').textContent = 'Price: ' + currentBooking.price + ' SAR';
 
         // Set other details like date and quantity if needed
-        document.getElementById('bookingDate').value = currentBooking.date;
+        document.getElementById('checkInDate').value = currentBooking.checkInDate;
+        document.getElementById('checkOutDate').value = currentBooking.checkOutDate;
         document.getElementById('quantity').value = currentBooking.quantity;
+
+        // Clear existing slides before repopulating
+        var swiperWrapper = document.querySelector('.swiper-wrapper');
+        swiperWrapper.innerHTML = '';
+
+        // Repopulate the slider with images for the current room type
+        var roomImages = getRoomImages(currentBooking.room);
+
+        roomImages.forEach(function (imageSrc) {
+            var swiperSlide = document.createElement('div');
+            swiperSlide.className = 'swiper-slide';
+            var image = document.createElement('img');
+            image.src = imageSrc;
+            image.alt = currentBooking.room;
+            swiperSlide.appendChild(image);
+            swiperWrapper.appendChild(swiperSlide);
+        });
+
+        // Initialize Swiper after updating the slides
+        var mySwiper = new Swiper('.swiper-container', {
+            // Add Swiper options if needed
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
         openModal(); // Open the modal 
     }
 }
-
 
 //
 
