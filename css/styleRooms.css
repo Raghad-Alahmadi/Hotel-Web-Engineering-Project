@@ -711,3 +711,25 @@ a.logo {
         max-height: 80vh;
     }
 }
+
+@media screen and (max-width: 1366px) {
+    #bookingModal {
+        width: 70%;
+        max-width: 800px;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    #invoiceContent {
+        max-width: 70%;
+    }
+
+    /* Add more responsive styles for modal and invoice as needed */
+}
