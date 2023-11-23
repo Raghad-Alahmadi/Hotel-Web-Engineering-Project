@@ -648,3 +648,60 @@ a.logo {
     display: flex;
     gap: 10px; /* Adjust the gap as needed */
 }
+
+
+
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+
+    nav {
+        padding: 15px;
+        height: auto;
+    }
+
+    a.logo {
+        font-size: 24px;
+    }
+
+    .menu h1 {
+        font-size: 40px;
+    }
+
+    .menu .menu-box {
+        width: 100%;
+    }
+
+    .menu .menu-card {
+        flex-direction: column;
+    }
+
+    .menu .menu-image {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .menu .menu-info {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .footer {
+        padding: 10px;
+    }
+
+    #bookingModal {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    #confirmBookingBtn {
+        margin: 15px auto;
+    }
+
+    #invoiceContent {
+        margin-top: 10px;
+    }
+}
