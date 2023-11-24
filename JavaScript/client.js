@@ -179,7 +179,6 @@ function closeModal() {
 }
 
 function goBack() {
-    
     var modal = document.getElementById('bookingModal');
 
     // Check if previous content is defined before using it
@@ -189,7 +188,7 @@ function goBack() {
         // Set the modal content to the original booking details
         document.getElementById('modalRoom').textContent = currentBooking.room;
         document.getElementById('modalDescription').textContent = currentBooking.description;
-        document.getElementById('modalPrice').textContent = 'Price: ' + currentBooking.price + ' SAR';
+        document.getElementById('modalPrice').textContent = 'Price: ' + currentBooking.price ;
 
         // Set other details like date and quantity if needed
         document.getElementById('checkInDate').value = currentBooking.checkInDate;
@@ -198,7 +197,7 @@ function goBack() {
 
         // Clear existing slides before repopulating
         var swiperWrapper = document.querySelector('.swiper-wrapper');
-        swiperWrapper.innerHTML = '';
+        swiperWrapper.innerHTML = ''; // Clear existing slides
 
         // Repopulate the slider with images for the current room type
         var roomImages = getRoomImages(currentBooking.room);
