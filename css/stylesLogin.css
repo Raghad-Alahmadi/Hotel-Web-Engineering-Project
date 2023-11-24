@@ -1,13 +1,24 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+
+
 body, html {
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Add this line to hide the overflow */
 }
 
+/* The rest of your CSS remains unchanged */
 body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    background: url('/images/room2.jpg') center/cover; /* Added no-repeat */
+    background: url('/images/room2.jpg') center/cover no-repeat;
     backdrop-filter: blur(4px);
     height: 100vh;
 }
@@ -16,8 +27,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Changed height to min-height */
-    
+    min-height: 100vh;
 }
 
 nav {
