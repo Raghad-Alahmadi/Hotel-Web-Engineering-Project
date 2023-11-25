@@ -171,6 +171,9 @@ function openModal(button) {
             clickable: true,
         },
     });
+
+    modal.style.display = 'block';
+    modal.style.animation = 'modalFadeIn 0.5s';
 }
 
 function closeModal() {

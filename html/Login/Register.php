@@ -55,10 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en-US">
 
 <head>
-    <!-- Your existing head content here -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="css/presentation.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -116,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="register">
-                    <p>Have an account ? <a href="/html/Login/login.html">Login</a></p>
+                    <p>Have an account ? <a href="/html/Login/login.php">Login</a></p>
                 </div>
 
                 <button type="submit" class="btn">Sign up</button>
