@@ -1,3 +1,89 @@
+<?php
+$conn = mysqli_connect('localhost', 'root', '', 'paymentinfo');
+if (!$conn) {
+    echo 'Error: ' . mysqli_connect_error();
+}
+//Name on Card
+if (isset($_POST['cardname'])) {
+    $cardname = mysqli_real_escape_string($conn, $_POST['cardname']);
+} else {
+    $cardname = ''; // Set a default value or handle the absence of data.
+}
+//Number of Card
+if (isset($_POST['cardnumber'])) {
+    $cardnumber = mysqli_real_escape_string($conn, $_POST['cardnumber']);
+} else {
+    $cardnumber = ''; // Set a default value or handle the absence of data.
+}
+//Card expiry Month
+if (isset($_POST['expmonth'])) {
+    $expmonth = mysqli_real_escape_string($conn, $_POST['expmonth']);
+} else {
+    $expmonth = ''; // Set a default value or handle the absence of data.
+}
+//Card expiry Year
+if (isset($_POST['expyear'])) {
+    $expyear = mysqli_real_escape_string($conn, $_POST['expyear']);
+} else {
+    $expyear = ''; // Set a default value or handle the absence of data.
+}
+//Card CVV
+if (isset($_POST['cvv'])) {
+    $cvv = mysqli_real_escape_string($conn, $_POST['cvv']);
+} else {
+    $cvv = ''; // Set a default value or handle the absence of data.
+}
+
+$errors = [
+    'CardNameError' => '',
+    'CardNumberError' => '',
+    'ExpMonthError' => '',
+    'ExpYearError' => '',
+    'CVVError' => '',
+];
+
+if (isset($_POST['submit'])) {
+    if (empty($cardname)) {
+        $errors['CardNameError'] = 'Please Enter the Name on the Card';
+    }
+
+    if (empty($cardnumber)) {
+        $errors['CardNumberError'] = 'Please Enter Card Number';
+    }
+    
+    if (empty($expmonth)) {
+        $errors['ExpMonthError'] = 'Please choose Card expiry Month';
+    }
+
+    if (empty($expyear)) {
+        $errors['ExpYearError'] = 'Please Enter Card expiry Year';
+    } 
+
+    if (empty($cvv)) {
+        $errors['CVVError'] = 'Please Enter CVV Number';
+    } else {
+        $sql = "INSERT INTO payment(Name, Cardnumber, Exmonth, Exyear, CVV) 
+        VALUES ('$cardname', '$cardnumber', '$expmonth', '$expyear', '$cvv')";
+
+        if (mysqli_query($conn, $sql)) {
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit();
+        } else {
+          echo 'Error: Unable to process payment. Please try again later.';
+          error_log('MySQL Error: ' . mysqli_error($conn));
+        }
+    }
+
+    $sql_s = 'SELECT * FROM payment';
+    $result = mysqli_query($conn, $sql_s);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +94,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="action">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="post">
             <h1>Payment</h1>
             <hr>
                 <label class="acccard" for="acccard">Accepted Cards</label>
@@ -17,57 +103,61 @@
                 <i class="fa fa-cc-paypal" style="color:blue"></i>
                 <i class="fa fa-cc-mastercard" style="color:red;"></i>
                 </div>
+
                 <label for="cname">Name on Card</label><br>
-                <input class="box1" type="text" id="cname" name="cardname" placeholder="Name"><br>
+                <div class = "inputbox">
+                  <input class="box1" type="text" id="cname" name="cardname" placeholder="Name" required><br>
+                </div>
 
                 <label for="cname">Credit card number</label><br>
-                <input class="box1" type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"><br>
+                <div class = "inputbox">
+                 <input class="box1" type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required><br>
+                </div>
 
                 <label for="expmonth">Exp Month</label><br>
-                
-                <select class="box1" id="expmonth" name="expmonth">
-                    <option value="01">January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select><br>
-
+                <div class = "inputbox">
+                  <select class="box1" id="expmonth" name="expmonth" placeholder="MM" required>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                  </select><br>
+                </div>
                 <div class="div1">
                     <label for = "cardye">Exp Year</label><br>
-                    <input class = "box2" type = "year" name = "year" id = "year" placeholder = "YYYY"><br>
+                    <div class = "inputbox">
+                      <input class = "box2" type = "year" name = "expyear" id = "expyear" placeholder = "YYYY" required><br>
+                    </div>
                 </div>
 
                 <div class="div1">
                     <label for="cardCVC">CVV</label><br>
-                    <input class = "box2" type="cvv" name="cvv" id="cvv" placeholder = "CVV"><br>
+                    <div class = "inputbox">
+                      <input class = "box2" type="cvv" name="cvv" id="cvv" placeholder = "CVV" required><br>
+                    </div>
                 </div>
 
                 <label>
                 <br><input type="checkbox" checked="checked" name="savecard">Save card details for next time
                 </label>
                 <hr>
-                <p>Total <span id="totalAmount" class="price" style="color:black"><b></b></span></p>
+                <p>Total <span class="price" style="color:black"><b>2000 SAR</b></span></p>
                 <p class="VAT">The total cost includes a 15% VAT</p>
-                <input type="submit" value="Continue to checkout" class="btn">
-
-                <script>
-                      // Assuming you pass the total amount as a query parameter in the URL
-                      var urlParams = new URLSearchParams(window.location.search);
-                      var totalAmount = urlParams.get('totalAmount');
-
-                      // Display the total amount on the payment page
-                      $totalAmount = isset($_GET['totalAmount']) ? $_GET['totalAmount'] : 0;
-                      document.getElementById('totalAmount').innerHTML = `<b>${totalAmount} SAR</b>`;
-                </script>
+                <input type="submit" name="submit" value="Continue to checkout" class="btn">
         </form>
+    <!--Session time out-->
+    </div>
+    <div id="sessionTimeoutWarning">Your session is about to expire. Do you want to continue?
+    <button id="acceptButton">Yes, please</button>
+    <button onclick="rejectAndGoBack()" id="RejectButton">No, Back to Booking Page</button>
     </div>
 </body>
 </html>
@@ -84,8 +174,8 @@ body{
 
 .container{
   width: 600px;
-  height: 720px;
-  margin: 50px auto 0 320px;
+  height: 730px;
+  margin: 50px auto 0 260px;
   padding: 25px;
   background-color:whitesmoke;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -176,4 +266,96 @@ span.price {
 .btn:hover {
   background-color: rgb(61, 69, 75);
 }
+
+#sessionTimeoutWarning {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffeb3b;
+      color: #333;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+}
+#acceptButton {
+      background-color: #f8faf8;
+      color: black;
+      margin-left: 20px;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+}
+#RejectButton {
+      background-color: #f8faf8;
+      color: black;
+      margin-left: 20px;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+}
 </style>
+
+<script>
+const sessionTimeoutDuration = 60000 ;
+
+let sessionTimeout;
+
+
+function showSessionTimeoutWarning() {
+  document.getElementById('sessionTimeoutWarning').style.display = 'block';
+}
+
+
+function hideSessionTimeoutWarning() {
+  document.getElementById('sessionTimeoutWarning').style.display = 'none';
+}
+
+function resetSessionTimeout() {
+
+  clearTimeout(sessionTimeout);
+
+  sessionTimeout = setTimeout(showSessionTimeoutWarning, sessionTimeoutDuration);
+}
+
+document.addEventListener('mousemove', resetSessionTimeout);
+document.addEventListener('keydown', resetSessionTimeout);
+
+// Event listener for the "Accept" button
+document.getElementById('acceptButton').addEventListener('click', function() {
+  hideSessionTimeoutWarning();
+  resetSessionTimeout();
+});
+
+resetSessionTimeout()
+
+//return to booking page
+function rejectAndGoBack() {
+
+    window.history.back();
+}
+
+// set space between card numbers
+function cardspace() {
+    var cardInput = document.getElementById('ccnum');
+    var cardDigits = cardInput.value.replace(/\D/g, ''); // Remove non-numeric characters
+
+    if (cardDigits.length > 0) {
+        // Insert a space every 4 characters
+        var formattedCard = cardDigits.replace(/(\d{4})/g, '$1 ').trim();
+        
+        // Update the input value
+        cardInput.value = formattedCard;
+    }
+}
+// Set up event listeners
+document.getElementById('ccnum').addEventListener('input', cardspace);
+document.getElementById('ccnum').addEventListener('paste', cardspace);
+
+
+  </script>
