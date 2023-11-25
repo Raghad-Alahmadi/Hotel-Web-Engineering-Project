@@ -28,11 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($loginPassword, $row["password"])) {
-            // Login successful
-            session_start();
-            $_SESSION["username"] = $loginUsername;
-            header("Location: /html/home.html"); // Redirect to home page
-            exit();
+            // Check if the user is an admin
+            if ($row["is_admin"]) {
+                // Admin login successful
+                session_start();
+                $_SESSION["username"] = $loginUsername;
+                $_SESSION["is_admin"] = true;
+                header("Location: /html/admin-dashboard/"); // Redirect to admin dashboard
+                exit();
+            } else {
+                // Regular user login successful
+                session_start();
+                $_SESSION["username"] = $loginUsername;
+                header("Location: /html/home.html"); // Redirect to home page
+                exit();
+            }
         } else {
             // Incorrect password
             $loginError = "Incorrect password. Please try again.";

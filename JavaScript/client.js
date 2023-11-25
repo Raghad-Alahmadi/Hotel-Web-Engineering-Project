@@ -1,8 +1,3 @@
-
-
-
-
-
 var currentBooking = {}; // Variable to store current booking details
 var prevModalContent = ''; // Variable to store previous modal content
 

@@ -50,19 +50,19 @@ $result = $conn->query($sql);
                 </a>
             </li>
             <li>
-                <a href="/html/admin-dashboard.html/makeRes.php">
+                <a href="/html/admin-dashboard/makeRes.php">
                     <i class='bx bx-bed'></i>
                     <span class="text">Available Rooms</span>
                 </a>
             </li>
             <li>
-                <a href="/html/admin-dashboard.html/reserved.html">
+                <a href="/html/admin-dashboard/reserved.html">
                     <i class='bx bx-calendar-check'></i>
                     <span class="text">View Reservations</span>
                 </a>
             </li>
             <li>
-                <a href="/html/admin-dashboard.html/login.html">
+                <a href="/html/admin-dashboard/logout.php">
                     <i class='bx bx-log-in-circle'></i>
                     <span class="text">Logout</span>
                 </a>
