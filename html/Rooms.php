@@ -1,3 +1,57 @@
+<?php
+
+
+// Start the session to check for authentication status
+session_start();
+
+// Check if the user is not authenticated, redirect to the login page
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /html/Login/login.php');
+    exit();
+}
+
+// Replace these values with your actual database credentials
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "hotel";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve booking details from the POST data
+    $room = $conn->real_escape_string($_POST["room"]);
+    $description = $conn->real_escape_string($_POST["description"]);
+    $price = $conn->real_escape_string($_POST["price"]);
+    $checkInDate = $conn->real_escape_string($_POST["checkInDate"]);
+    $checkOutDate = $conn->real_escape_string($_POST["checkOutDate"]);
+    $quantity = $conn->real_escape_string($_POST["quantity"]);
+
+    // Prepare and execute the SQL query
+    $sql = "INSERT INTO bookings (user_id, room, description, price, check_in_date, check_out_date, quantity) 
+    VALUES ('$user_id', '$room', '$description', '$price', '$checkInDate', '$checkOutDate', '$quantity')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Booking details saved successfully!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    } else {
+    // Redirect to the home page if accessed directly without POST data
+        header("Location: /html/home.html");
+        exit();
+    }
+
+// Close the database connection
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +64,12 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <title>Rooms</title>
+
+    <?php
+    // Echo the authentication status as a JavaScript variable
+    $isLoggedIn = isset($_SESSION['user_id']) ? 'true' : 'false';
+    echo "<script>var isLoggedIn = $isLoggedIn;</script>";
+    ?>
 </head>
 <body>
     <section class="head">
@@ -32,11 +92,9 @@
         <div class="menu" id="Menu">
             <h1>The <span> Rooms</span> </h1>
 
-
             <div id="editReservationContainer" style="display: none;">
                 <a href="/html/editReservation.html" class="menu-btn">Edit Reservation</a>
             </div>
-
 
             <div class="menu-box">
                 <div class="menu-card">
@@ -175,8 +233,79 @@
             <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
         </section>
        
-        <script src="/JavaScript/client.js"></script>
+        <script>
+            window.onload = function() {
+                checkLoggedInUser();
+            };
+
+            function openModal(button) {
+                // Check if the user is authenticated
+                if (isLoggedIn === 'true') {
+                        var modal = document.getElementById('bookingModal');
+                        var room = button.getAttribute('data-room');
+                        var description = button.getAttribute('data-description');
+                        var price = button.getAttribute('data-price');
 
 
+
+                        // Get the check-in and check-out date inputs
+                        var checkInDate = new Date(document.getElementById('checkInDate').value);
+                        var checkOutDate = new Date(document.getElementById('checkOutDate').value);
+                        
+                        // Check if the check-out date is before the check-in date
+                        if (checkOutDate < checkInDate) {
+                            alert('Check-out date cannot be before the check-in date.');
+                            return; // Stop further execution
+                        }
+
+
+                        // Store the current modal content before modifying it
+                        prevModalContent = modal.innerHTML;
+
+                        // Get the container for Swiper slides
+                        var swiperWrapper = document.querySelector('.swiper-wrapper');
+
+                        // Clear existing slides
+                        swiperWrapper.innerHTML = '';
+
+                        // Get the room images based on the room type
+                        var roomImages = getRoomImages(room);
+
+                        // Create new Swiper slides based on room images
+                        roomImages.forEach(function (imageSrc) {
+                            var swiperSlide = document.createElement('div');
+                            swiperSlide.className = 'swiper-slide';
+                            var image = document.createElement('img');
+                            image.src = imageSrc;
+                            image.alt = room;
+                            swiperSlide.appendChild(image);
+                            swiperWrapper.appendChild(swiperSlide);
+                        });
+
+                        // Set modal content dynamically
+                        document.getElementById('modalRoom').textContent = room;
+                        document.getElementById('modalDescription').textContent = description;
+                        document.getElementById('modalPrice').textContent = 'Price: ' + price + ' SAR';
+
+                        modal.style.display = 'block';
+                        modal.style.animation = 'modalFadeIn 0.5s';
+
+                        // Initialize Swiper after updating the slides
+                        var mySwiper = new Swiper('.swiper-container', {
+                            // Add Swiper options if needed
+                            pagination: {
+                                el: '.swiper-pagination',
+                                clickable: true,
+                            },
+                        });
+                } else {
+                    // Redirect to the login page if not authenticated
+                    window.location.href = "/html/Login/login.php";
+                }
+            }
+
+            
+        </script>
+         <script src="/JavaScript/client.js"></script>
     </body>
 </html>

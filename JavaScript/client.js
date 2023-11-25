@@ -1,3 +1,8 @@
+
+
+
+
+
 var currentBooking = {}; // Variable to store current booking details
 var prevModalContent = ''; // Variable to store previous modal content
 
@@ -113,65 +118,6 @@ function getRoomImages(roomType) {
     return roomImagesMap[roomType] || [];
 }
 
-function openModal(button) {
-    var modal = document.getElementById('bookingModal');
-    var room = button.getAttribute('data-room');
-    var description = button.getAttribute('data-description');
-    var price = button.getAttribute('data-price');
-
-
-
-        // Get the check-in and check-out date inputs
-        var checkInDate = new Date(document.getElementById('checkInDate').value);
-        var checkOutDate = new Date(document.getElementById('checkOutDate').value);
-    
-        // Check if the check-out date is before the check-in date
-        if (checkOutDate < checkInDate) {
-            alert('Check-out date cannot be before the check-in date.');
-            return; // Stop further execution
-        }
-
-
-    // Store the current modal content before modifying it
-    prevModalContent = modal.innerHTML;
-
-    // Get the container for Swiper slides
-    var swiperWrapper = document.querySelector('.swiper-wrapper');
-
-    // Clear existing slides
-    swiperWrapper.innerHTML = '';
-
-    // Get the room images based on the room type
-    var roomImages = getRoomImages(room);
-
-    // Create new Swiper slides based on room images
-    roomImages.forEach(function (imageSrc) {
-        var swiperSlide = document.createElement('div');
-        swiperSlide.className = 'swiper-slide';
-        var image = document.createElement('img');
-        image.src = imageSrc;
-        image.alt = room;
-        swiperSlide.appendChild(image);
-        swiperWrapper.appendChild(swiperSlide);
-    });
-
-    // Set modal content dynamically
-    document.getElementById('modalRoom').textContent = room;
-    document.getElementById('modalDescription').textContent = description;
-    document.getElementById('modalPrice').textContent = 'Price: ' + price + ' SAR';
-
-    modal.style.display = 'block';
-    modal.style.animation = 'modalFadeIn 0.5s';
-
-    // Initialize Swiper after updating the slides
-    var mySwiper = new Swiper('.swiper-container', {
-        // Add Swiper options if needed
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
-}
 
 function closeModal() {
     var modal = document.getElementById('bookingModal');
