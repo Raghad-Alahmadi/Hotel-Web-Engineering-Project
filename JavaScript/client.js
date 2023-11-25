@@ -1,3 +1,8 @@
+
+
+
+
+
 var currentBooking = {}; // Variable to store current booking details
 var prevModalContent = ''; // Variable to store previous modal content
 
@@ -171,9 +176,6 @@ function openModal(button) {
             clickable: true,
         },
     });
-
-    modal.style.display = 'block';
-    modal.style.animation = 'modalFadeIn 0.5s';
 }
 
 function closeModal() {
