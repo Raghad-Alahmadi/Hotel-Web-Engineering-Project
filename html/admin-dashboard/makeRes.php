@@ -18,6 +18,29 @@ $sql = "SELECT RoomID, Room_type, Price FROM rooms WHERE availability = 1";
 
 $result = $conn->query($sql);
 
+
+// Get data from the AJAX request
+$roomType = $_POST['roomType'];
+$checkInDate = $_POST['checkInDate'];
+$checkOutDate = $_POST['checkOutDate'];
+$quantity = $_POST['quantity'];
+$price = $_POST['price'];
+$totalPrice = $_POST['totalPrice'];
+$username = $_POST['username'];
+
+// SQL query to update the reserved table
+$sql = "INSERT INTO reservations (Username, RoomID, RoomType, CheckInDate, CheckOutDate, Quantity, TotalPrice)
+        VALUES ('$roomType', '$checkInDate', '$checkOutDate', $quantity, '$description', $price, $totalPrice, '$username')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Reservation made successfully!";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close the database connection
+$conn->close();
+?>
 ?>
 
 <!DOCTYPE html>

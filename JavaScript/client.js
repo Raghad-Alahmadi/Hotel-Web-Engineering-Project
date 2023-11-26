@@ -72,6 +72,19 @@ function confirmBooking() {
     // Redirect to the PHP page with the total amount as a query parameter
     window.location.href = '/php/index.php?totalAmount=' + totalAmount;
 
+
+    // Send the data to the server
+    xhr.send(
+        "roomType=" + encodeURIComponent(roomType) +
+        "&checkInDate=" + encodeURIComponent(checkInDate) +
+        "&checkOutDate=" + encodeURIComponent(checkOutDate) +
+        "&quantity=" + encodeURIComponent(quantity) +
+        "&description=" + encodeURIComponent(description) +
+        "&price=" + encodeURIComponent(price) +
+        "&totalPrice=" + encodeURIComponent(totalPrice) +
+        "&username=" + encodeURIComponent(username)
+    );
+
 }
 
 function showInvoice() {

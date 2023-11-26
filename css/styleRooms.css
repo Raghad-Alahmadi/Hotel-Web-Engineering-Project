@@ -442,6 +442,34 @@ a.logo {
 }
 
 
+/* Swiper Pagination Styles */
+
+.swiper-container {
+    position: relative;
+    z-index: 0;
+}
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1; /* Set a higher z-index value */
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin: 0 8px;
+    background-color: #AC3B61;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #484872; /* Change the color for the active dot */
+}
 /* EDIT RESERVATION */
 .menu-info table {
     width: calc(100% - 48px); /* Adjust the value based on your padding */

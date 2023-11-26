@@ -1,3 +1,19 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "hotel";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,11 +148,12 @@
                     <!-- Slide 1 -->
                     <div class="swiper-slide">
                         <img src="/images/room1.jpg" alt="Room 1" style="max-width: 60%; height: auto;">
+                        
                     </div>
 
                 </div>
                 <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
+
             </div>
     
             <h2 id="modalRoom">Booking Details</h2>
