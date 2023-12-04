@@ -13,29 +13,30 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
 // SQL query to fetch available rooms
 $sql = "SELECT RoomID, Room_type, Price FROM rooms WHERE availability = 1";
 
 $result = $conn->query($sql);
 
-
 // Get data from the AJAX request
-$roomType = $_POST['roomType'];
+$username = $_POST['CustomerName'];
+$roomId = $_POST['RoomID'];
+$roomType = $_POST['Room_Type'];
 $checkInDate = $_POST['checkInDate'];
 $checkOutDate = $_POST['checkOutDate'];
-$quantity = $_POST['quantity'];
+$quantity = $_POST['Quantity'];
 $price = $_POST['price'];
-$totalPrice = $_POST['totalPrice'];
-$username = $_POST['username'];
+$totalPrice = $_POST['Total'];
+
 
 // SQL query to update the reserved table
-$sql = "INSERT INTO reservations (Username, RoomID, RoomType, CheckInDate, CheckOutDate, Quantity, TotalPrice)
-        VALUES ('$roomType', '$checkInDate', '$checkOutDate', $quantity, '$description', $price, $totalPrice, '$username')";
+$sql = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Tota)
+        VALUES ('$username', '$roomId', '$roomType', '$checkInDate', '$checkOutDate', $quantity, $totalPrice)";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Reservation made successfully!";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+// Check if the query was successful
+if (!$result) {
+    die("Query failed: " . $conn->error);
 }
 
 // Close the database connection
@@ -139,9 +140,23 @@ $conn->close();
         <!-- Your JavaScript and jQuery scripts here -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script>
-            // Your existing JavaScript code remains unchanged
-            // ...
-        </script>
+    $(document).ready(function () {
+        // Existing JavaScript code
+
+        // Add the following click event handler for the "Book Now" button
+        $('.btn-book-now').click(function () {
+            var roomId = $(this).data('room-id');
+            var roomType = $(this).closest('tr').find('td:nth-child(2)').text(); // Assuming room type is in the second column
+            var price = $(this).closest('tr').find('td:nth-child(3)').text(); // Assuming price is in the third column
+
+            // Assuming you have a booking page named "booking.php"
+            var bookingPage = "/html/admin-dashboard/booking.php";
+
+            // Redirect to the booking page with the details
+            window.location.href = bookingPage + "?roomId=" + roomId + "&roomType=" + roomType + "&price=" + price;
+        });
+    });
+</script>
     </section>
 
 </body>

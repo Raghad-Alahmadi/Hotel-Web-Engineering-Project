@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // SQL query to fetch available rooms
-$sql = "SELECT 	ReservationID, CustomerName, RoomID,CheckInDate, CheckOutDate FROM reservations ";
+$sql = "SELECT 	ReservationID, CustomerName, RoomID,CheckInDate, CheckOutDate, Room_type, Quantity, Total FROM reservations ";
 
 $result = $conn->query($sql);
 
@@ -94,6 +94,9 @@ $result = $conn->query($sql);
                                 <th>Room ID</th>
                                 <th>CheckIn Date</th>
                                 <th>CheckOut Date</th>
+                                <th>Room Type</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -107,6 +110,9 @@ $result = $conn->query($sql);
                                 echo '<td>' . $row['RoomID'] . '</td>';
                                 echo '<td>' . $row['CheckInDate'] . '</td>';
                                 echo '<td>' . $row['CheckOutDate'] . '</td>';
+                                echo '<td>' . $row['Room_type'] . '</td>';
+                                echo '<td>' . $row['Quantity'] . '</td>';
+                                echo '<td>' . $row['Total'] . '</td>';
                                 echo '<td><button class="btn-edit" data-id="' . $row['ReservationID'] . '">Edit</button></td>';
                                 echo '<td><button class="btn-delete" data-id="' . $row['ReservationID'] . '">Delete</button></td>';
                                 echo '</tr>';
