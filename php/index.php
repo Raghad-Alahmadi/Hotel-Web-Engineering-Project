@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'paymentinfo');
+$conn = mysqli_connect('localhost', 'root', 'root', 'hotel');
 if (!$conn) {
     echo 'Error: ' . mysqli_connect_error();
 }
