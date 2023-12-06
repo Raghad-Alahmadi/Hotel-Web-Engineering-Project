@@ -31,7 +31,7 @@ $totalPrice = $_POST['Total'];
 
 
 // SQL query to update the reserved table
-$sql = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Tota)
+$sql = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Total)
         VALUES ('$username', '$roomId', '$roomType', '$checkInDate', '$checkOutDate', $quantity, $totalPrice)";
 
 // Check if the query was successful

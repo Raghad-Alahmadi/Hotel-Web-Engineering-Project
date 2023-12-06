@@ -1,47 +1,45 @@
 <?php
-// Assume you have a database connection
 $servername = "localhost";
 $username = "root";
 $password = "root";
 $dbname = "hotel";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Initialize variables
-$roomId = isset($_GET['roomId']) ? $_GET['roomId'] : '';
-$roomType = isset($_GET['roomType']) ? $_GET['roomType'] : '';
-$price = isset($_GET['price']) ? $_GET['price'] : '';
-
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get data from the form
     $username = $_POST['username'];
     $checkInDate = $_POST['checkInDate'];
     $checkOutDate = $_POST['checkOutDate'];
     $quantity = $_POST['quantity'];
+    $roomId = $_POST['roomId'];
+    $roomType = $_POST['roomType'];
+    $price = $_POST['price'];
+
 
     // Calculate total price
     $totalPrice = $quantity * $price;
 
-    // SQL query to update the reservations table
+    // SQL query to insert into the reservations table
     $sql = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Total)
-            VALUES ('$username', '$roomId', '$roomType', '$checkInDate', '$checkOutDate', $quantity, $totalPrice)";
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sisssii", $username, $roomId, $roomType, $checkInDate, $checkOutDate, $quantity, $totalPrice);
 
-    // Execute the query
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute()) {
         echo "Reservation successful!";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error;
     }
+
+    $stmt->close();
 }
 
-// Close the database connection
 $conn->close();
 ?>
 
@@ -105,15 +103,19 @@ $conn->close();
         </nav>
         <!-- MAIN -->
         <main>
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                    <h3>Reservation Details</h3>
-                <form method="post" action="booking.php?roomId=<?php echo $roomId; ?>&roomType=<?php echo $roomType; ?>&price=<?php echo $price; ?>">
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Reservation Details</h3>
+                <form method="post" action="booking.php">
+
+                <input type="hidden" name="roomId" value="<?php echo $_GET['roomId']; ?>">
+    <input type="hidden" name="roomType" value="<?php echo $_GET['roomType']; ?>">
+    <input type="hidden" name="price" value="<?php echo $_GET['price']; ?>">
 
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
-                    
+
                     <label for="checkInDate">Check-In Date:</label>
                     <input type="date" id="checkInDate" name="checkInDate" required>
 
@@ -123,14 +125,12 @@ $conn->close();
                     <label for="quantity">Quantity:</label>
                     <input type="number" id="quantity" name="quantity" min="1" required>
 
-
-
                     <input type="submit" value="Book Now">
                 </form>
-                    </table>
-                </div>
             </div>
-        </main>
+        </div>
+    </div>
+</main>
         
         <!-- Your JavaScript and jQuery scripts here -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -141,6 +141,3 @@ $conn->close();
 
 </html>
 
-<?php
-$conn->close();
-?>

@@ -160,7 +160,7 @@ $result = $conn->query($sql);
                                 echo '<td>' . $row['Quantity'] . '</td>';
                                 echo '<td>' . $row['Total'] . '</td>';
                                 echo '<td><button class="btn-edit" data-id="' . $row['ReservationID'] . '">Edit</button></td>';
-                                echo '<td><button class="btn-delete" data-id="' . $row['ReservationID'] . '">Delete</button></td>';
+                                echo '<td><button class="btn-delete-row" data-id="' . $row['ReservationID'] . '">Delete</button></td>';
                                 echo '</tr>';
                             }
                             ?>
@@ -215,7 +215,7 @@ $result = $conn->query($sql);
                 </button>
             </div>
             <div class="modal-body">
-                <form id="deleteForm" method="post" action="">
+                <form id="deleteForm" method="post" action="deleteRes.php">
                     <p>Are you sure you want to delete this reservation?</p>
                     <input type="hidden" name="reservationId" value="">
                     <button type="submit" class="btn-delete">Delete</button>
@@ -277,9 +277,9 @@ $result = $conn->query($sql);
 <script>
     $(document).ready(function () {
         // Open delete modal when delete button is clicked
-        $('.btn-delete').click(function () {
+        $('.btn-delete-row').click(function () {
             var reservationId = $(this).data('id');
-            $('#deleteForm').attr('action', 'delete_reservation.php?reservationId=' + reservationId);
+            $('#deleteForm').attr('action', 'deleteRes.php?reservationId=' + reservationId);
             $('#deleteForm [name="reservationId"]').val(reservationId);
             $('#deleteModal').modal('show');
         });

@@ -3,6 +3,18 @@ $conn = mysqli_connect('localhost', 'root', 'root', 'hotel');
 if (!$conn) {
     echo 'Error: ' . mysqli_connect_error();
 }
+
+
+// Retrieve total from URL
+if (isset($_GET['total'])) {
+  $total = floatval($_GET['total']); 
+} else {
+  // Handle the case when total is not provided
+  $total = 0;
+}
+
+
+
 //Name on Card
 if (isset($_POST['cardname'])) {
     $cardname = mysqli_real_escape_string($conn, $_POST['cardname']);
@@ -64,10 +76,20 @@ if (isset($_POST['submit'])) {
     } else {
         $sql = "INSERT INTO payment(Name, Cardnumber, Exmonth, Exyear, CVV) 
         VALUES ('$cardname', '$cardnumber', '$expmonth', '$expyear', '$cvv')";
+        $reservationSql = "INSERT INTO reservations (total_amount, other_columns) 
+        VALUES ('$total', 'other_values')";
 
+        if (mysqli_query($conn, $reservationSql)) {
+        // Reservation details inserted successfully
+        // You may want to redirect the user or perform additional actions here
+        } else {
+        echo 'Error: Unable to insert reservation details. Please try again later.';
+        error_log('MySQL Error: ' . mysqli_error($conn));
+        }
         if (mysqli_query($conn, $sql)) {
             header('Location: ' . $_SERVER['PHP_SELF']);
             exit();
+
         } else {
           echo 'Error: Unable to process payment. Please try again later.';
           error_log('MySQL Error: ' . mysqli_error($conn));
