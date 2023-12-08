@@ -78,6 +78,23 @@ $result = $conn->query($sql);
 .order h2 {
         margin-bottom: 60px;
     }
+
+    @media (max-width: 768px) {
+            .content {
+                margin: 5px;
+                padding: 10px;
+            }
+
+            th, td {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .btn {
+                padding: 8px;
+                margin: 3px;
+            }
+        }
 </style>
 
     <title>Rooms</title>
