@@ -33,6 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         echo "Reservation successful!";
+         // Set room availability to 0 after successful reservation
+         $sqlUpdateAvailability = "UPDATE rooms SET Availability = 0 WHERE RoomID = ?";
+         $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
+         $stmtUpdateAvailability->bind_param("i", $roomId);
+
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -103,10 +108,11 @@ $conn->close();
         </nav>
         <!-- MAIN -->
         <main>
+        <h1>Reservation Details</h1>
     <div class="table-data">
         <div class="order">
             <div class="head">
-                <h3>Reservation Details</h3>
+
                 <form method="post" action="booking.php">
 
                 <input type="hidden" name="roomId" value="<?php echo $_GET['roomId']; ?>">
@@ -137,6 +143,37 @@ $conn->close();
       
     </section>
 
+    <style>
+
+    label {
+        display: flex;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        align-items: center;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
 </body>
 
 </html>

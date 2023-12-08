@@ -149,7 +149,7 @@ $conn->close();
             var roomType = $(this).closest('tr').find('td:nth-child(2)').text(); // Assuming room type is in the second column
             var price = $(this).closest('tr').find('td:nth-child(3)').text(); // Assuming price is in the third column
 
-            // Assuming you have a booking page named "booking.php"
+           
             var bookingPage = "/html/admin-dashboard/booking.php";
 
             // Redirect to the booking page with the details

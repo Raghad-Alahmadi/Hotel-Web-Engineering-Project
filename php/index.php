@@ -1,17 +1,46 @@
 <?php
+session_start();
+include('html/Rooms.php.php');
+
 $conn = mysqli_connect('localhost', 'root', 'root', 'hotel');
 if (!$conn) {
     echo 'Error: ' . mysqli_connect_error();
 }
 
+// Retrieve reservation details from URL parameters
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+$roomId = isset($_GET['roomId']) ? $_GET['roomId'] : '';
+$roomType = isset($_GET['roomType']) ? $_GET['roomType'] : '';
+$price = isset($_GET['price']) ? $_GET['price'] : '';
+$checkInDate = isset($_GET['checkInDate']) ? $_GET['checkInDate'] : '';
+$checkOutDate = isset($_GET['checkOutDate']) ? $_GET['checkOutDate'] : '';
+$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : '';
 
-// Retrieve total from URL
-if (isset($_GET['total'])) {
-  $total = floatval($_GET['total']); 
-} else {
-  // Handle the case when total is not provided
-  $total = 0;
+if (isset($_POST['submit'])) {
+  // ... (your existing form validation code)
+
+  // If form validation is successful, proceed with reservation and payment
+  if (empty(array_filter($errors))) {
+      // Reservation
+      $sqlReservation = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, Quantity, Total)
+                         VALUES (?, ?, ?, ?, ?)";
+      $stmtReservation = $conn->prepare($sqlReservation);
+      $stmtReservation->bind_param("sisis", $cardname, $roomId, $roomType, $quantity, $total);
+      $stmtReservation->execute();
+
+      // Payment
+      $sqlPayment = "INSERT INTO payment (Name, Cardnumber, Exmonth, Exyear, CVV, Total)
+                     VALUES (?, ?, ?, ?, ?, ?)";
+      $stmtPayment = $conn->prepare($sqlPayment);
+      $stmtPayment->bind_param("sssssd", $cardname, $cardnumber, $expmonth, $expyear, $cvv, $total);
+      $stmtPayment->execute();
+
+      // Redirect or perform additional actions as needed
+      header("Location: payment-success.php");  // Adjust the redirect URL as needed
+      exit();
+  }
 }
+
 
 
 
@@ -115,6 +144,31 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+  <!-- Display reservation details -->
+<h2>Reservation Details</h2>
+<p>Username: <?php echo $username; ?></p>
+<p>Room ID: <?php echo $roomId; ?></p>
+<p>Room Type: <?php echo $roomType; ?></p>
+<p>Price: <?php echo $price; ?></p>
+<p>Check-in Date: <?php echo $checkInDate; ?></p>
+<p>Check-out Date: <?php echo $checkOutDate; ?></p>
+<p>Quantity: <?php echo $quantity; ?></p>
+<p>Total Price: <?php echo $price * $quantity; ?></p> <!-- Display the total price -->
+
+<!-- Include your payment form fields here -->
+
+<!-- Add a hidden input field to pass reservation details to the server -->
+<input type="hidden" name="roomId" value="<?php echo $roomId; ?>">
+<input type="hidden" name="roomType" value="<?php echo $roomType; ?>">
+<input type="hidden" name="price" value="<?php echo $price; ?>">
+<input type="hidden" name="checkInDate" value="<?php echo $checkInDate; ?>">
+<input type="hidden" name="checkOutDate" value="<?php echo $checkOutDate; ?>">
+<input type="hidden" name="quantity" value="<?php echo $quantity; ?>">
+<input type="hidden" name="totalPrice" value="<?php echo $price * $quantity; ?>"> <!-- Pass the total price to the server -->
+
+<!-- Include your payment form submit button here -->
+<input type="submit" name="submit" value="Proceed to Payment">
+
     <div class="container">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="post">
             <h1>Payment</h1>
@@ -171,7 +225,7 @@ if (isset($_POST['submit'])) {
                 <br><input type="checkbox" checked="checked" name="savecard">Save card details for next time
                 </label>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>2000 SAR</b></span></p>
+                <p>Total <span class="price" style="color:black"><b><?php echo $price . " SAR"; ?></b></span></p>
                 <p class="VAT">The total cost includes a 15% VAT</p>
                 <input type="submit" name="submit" value="Continue to checkout" class="btn">
         </form>

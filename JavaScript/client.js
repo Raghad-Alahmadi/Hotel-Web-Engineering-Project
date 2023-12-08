@@ -16,10 +16,15 @@ function confirmBooking() {
     var checkOutDate = document.getElementById('checkOutDate').value;
     var quantity = document.getElementById('quantity').value;
 
+        // Retrieve username from input
+        var userNameInput = document.getElementById('userName');
+        var userName = userNameInput.value;
+        document.getElementById("invoiceRoom").innerText = selectedRoomText;
     // Create invoice content
     var invoiceContent = document.createElement('div');
     invoiceContent.innerHTML = `
         <h2>Booking Invoice</h2>
+        <p><strong>User:</strong> ${userName}</p>
         <p><strong>Room:</strong> ${room}</p>
         <p><strong>Description:</strong> ${description}</p>
         <p><strong>Price:</strong> ${price}</p>
@@ -45,7 +50,6 @@ function confirmBooking() {
     modal.appendChild(invoiceContent);
     showInvoice();
 
-    // Prepare the data to send in the POST request
     var formData = new FormData();
     formData.append("room", room);
     formData.append("description", description);
@@ -53,7 +57,8 @@ function confirmBooking() {
     formData.append("checkInDate", checkInDate);
     formData.append("checkOutDate", checkOutDate);
     formData.append("quantity", quantity);
-
+    formData.append("userName", userName); // Add userName to the FormData
+    
     // Send a POST request to the PHP script
     fetch('/php/booking.php', {
         method: 'POST',
@@ -89,6 +94,8 @@ function confirmBooking() {
 
 function showInvoice() {
     var invoiceContent = document.getElementById('invoiceContent');
+    var userName = document.getElementById('userName').value; // Get the userName input value
+    document.getElementById('invoiceUser').innerText = userName; // Set the userName in the invoice
     invoiceContent.style.display = 'block';
 }
 function checkout() {
@@ -238,38 +245,20 @@ function goBack() {
     }
 }
 
-//
 
+$(document).ready(function () {
+    // Existing JavaScript code
 
-function checkLoggedInUser() {
-    // Assuming you store the user's login status in localStorage
-    var isLoggedIn = localStorage.getItem('isLoggedIn');
+    // Add the following click event handler for the "Book Now" button
+    $('.btn-book-now').click(function () {
+        var roomId = $(this).data('room-id');
+        var roomType = $(this).closest('tr').find('td:nth-child(2)').text(); // Assuming room type is in the second column
+        var price = $(this).closest('tr').find('td:nth-child(3)').text(); // Assuming price is in the third column
 
-    // Get the edit reservation list item
-    var editReservationListItem = document.getElementById('editReservationContainer');
+       
+        var bookingPage = "/html/admin-dashboard/booking.php";
 
-    // Display the "Edit Reservation" button if the user is logged in, otherwise hide it
-    if (isLoggedIn === 'true') {
-        editReservationListItem.style.display = 'block';
-    } else {
-        editReservationListItem.style.display = 'none';
-    }
-}
-
-// Function to simulate a login action
-function simulateLogin() {
-    // Set the user as logged in in localStorage
-    localStorage.setItem('isLoggedIn', 'true');
-    
-    // Refresh the page to reflect the changes
-    location.reload();
-}
-
-// Function to simulate a logout action
-function simulateLogout() {
-    // Remove the user's login status from localStorage
-    localStorage.removeItem('isLoggedIn');
-    
-    // Refresh the page to reflect the changes
-    location.reload();
-}
+        // Redirect to the booking page with the details
+        window.location.href = bookingPage + "?roomId=" + roomId + "&roomType=" + roomType + "&price=" + price;
+    });
+});

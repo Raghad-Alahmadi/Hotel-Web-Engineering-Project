@@ -76,6 +76,40 @@ $result = $conn->query($sql);
     }
 </style>
 
+<style>
+    #deleteModal .modal-body .btn-delete,
+    #deleteModal .modal-body .btn-cancel {
+        margin: 10px;
+        padding: 10px 20px; /* Adjust the padding values as needed */
+        border: none;
+        border-radius: 5px;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    #deleteModal .modal-body .btn-delete {
+        background-color: #dc3545;
+        color: white;
+        justify-content: center;
+    }
+
+    #deleteModal .modal-body .btn-delete:hover {
+        background-color: #c82333;
+        justify-content: center;
+    }
+
+    #deleteModal .modal-body .btn-cancel {
+        background-color: #6c757d;
+        color: white;
+        justify-content: center;
+    }
+
+    #deleteModal .modal-body .btn-cancel:hover {
+        background-color: #5a6268;
+        justify-content: center;
+    }
+</style>
+
     <title>Reserved Rooms - Magnolia Dashboard</title>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -225,6 +259,8 @@ $result = $conn->query($sql);
         </div>
     </div>
 </div>
+
+
 
 <style>
     #deleteModal .modal-body form {

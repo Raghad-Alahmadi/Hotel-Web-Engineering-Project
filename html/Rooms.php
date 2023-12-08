@@ -1,4 +1,18 @@
 <?php
+
+session_start();
+
+// Check if the user is not logged in
+// Check if the user is logged in
+if (!isset($_SESSION["username"])) {
+    // Redirect to the login page if not logged in
+    header("Location: /html/Login/login.php");
+    exit();
+}
+// Access the user's name from the session
+$userName = $_SESSION["username"];
+
+// Replace these values with your actual database credentials
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -11,6 +25,24 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+    // Get the room type from the AJAX request
+    $roomType = $_POST['Room_Type'];
+
+
+    // Get data from the AJAX request
+    $roomId = $_POST['RoomID'];
+    $checkInDate = $_POST['checkInDate'];
+    $checkOutDate = $_POST['checkOutDate'];
+    $quantity = $_POST['Quantity'];
+    $price = $_POST['price'];
+    $totalPrice = $_POST['Total'];
+
+
+
+    // Close the database connection
+    $conn->close();
+
 ?>
 
 
@@ -71,7 +103,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <a href="javascript:void(0);" class="menu-btn" onclick="openModal(this)" data-room="Single Room" data-description="Step into simplicity and comfort..." data-price="600">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Single Room" data-description="Step into simplicity and comfort..." data-price="600">Book Now</a>
                     </div>
                 </div>
 
@@ -162,31 +194,45 @@ if ($conn->connect_error) {
 
             <!--  check-in and check-out date inputs -->
             <div class="date-inputs">
+                <label for="userName">User Name:</label>
+                <input type="text" id="userName" name="userName" required>
                 <label for="checkInDate">Check-in Date:</label>
                 <input type="date" id="checkInDate" name="checkInDate" required>
 
                 <label for="checkOutDate">Check-out Date:</label>
                 <input type="date" id="checkOutDate" name="checkOutDate" required>
+                <label for="roomId">Select Room:</label>
+<select id="roomId" name="roomId" required>
+    <?php
+    // Generate options for RoomIDs from 300 to 349
+    for ($i = 300; $i <= 349; $i++) {
+        echo "<option value='$i'>Room $i</option>";
+    }
+    ?>
+</select>
+
             </div>
             <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1" value="1">
-            <button id="confirmBookingBtn" onclick="confirmBooking(); showInvoice();">Confirm Booking</button>
+            <button class="btn-book-now" id="confirmBookingBtn" onclick="confirmBooking(); showInvoice();">Confirm Booking</button>
 
 
     
             <!-- Invoice Content Div -->
-            <div id="invoiceContent" style="display: none;">
-                <h2>Booking Invoice</h2>
-                <p><strong>Room Type:</strong> <span id="invoiceRoom"></span></p>
-                <p><strong>Description:</strong> <span id="invoiceDescription"></span></p>
-                <p><strong>Price per Unit:</strong> <span id="invoicePrice"></span></p>
-                <p><strong>Date:</strong> <span id="invoiceDate"></span></p>
-                <p><strong>Quantity:</strong> <span id="invoiceQuantity"></span></p>
-                <hr>
-                <p><strong>Total:</strong> <span id="invoiceTotal"></span></p>
-                <button onclick="checkout()">Checkout</button>
-                <button onclick="goBack()">Go Back</button>
-            </div>
+<!-- Invoice Content Div -->
+<div id="invoiceContent" style="display: none;">
+    <h2>Booking Invoice</h2>
+     <p><strong>User:</strong> <span id="invoiceUser"></span></p>
+    <p><strong>Room Type:</strong> <span id="invoiceRoom"></span></p>
+    <p><strong>Description:</strong> <span id="invoiceDescription"></span></p>
+    <p><strong>Price per Unit:</strong> <span id="invoicePrice"></span></p>
+    <p><strong>Date:</strong> <span id="invoiceDate"></span></p>
+    <p><strong>Quantity:</strong> <span id="invoiceQuantity"></span></p>
+    <hr>
+    <p><strong>Total:</strong> <span id="invoiceTotal"></span></p>
+    <button onclick="checkout()">Checkout</button>
+    <button onclick="goBack()">Go Back</button>
+</div>
         </div>
 
 
