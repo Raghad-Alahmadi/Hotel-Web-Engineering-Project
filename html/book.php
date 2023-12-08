@@ -61,39 +61,60 @@ $conn->close();
     }
 
     
-
+    table {
+        margin-top: 50px; /* Added margin-top for spacing */
+    }
     .content {
         margin: 200px;
         background-color: whitesmoke; /* Updated background color */
     }
 
+
+.btn {
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-book-now,
+    .btn-room-type,
+    .btn-room-type-single,
+    .btn-room-type-double,
+    .btn-room-type-suite,
+    .btn-room-type-family,
+    .btn-view-reservations {
+
+        padding: 10px 15px;
+        margin: 5px; 
+        color: white;
+        background-color:#6c757d;
+    }
+    .btn-view-reservations {
+        float: right;
+    }
+
     .btn-book-now {
         background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 15px; /* Adjust padding for a larger button */
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease; /* Add a smooth transition effect */
     }
 
     .btn-book-now:hover {
         background-color: #0056b3;
     }
-    .btn-room-type {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 8px 12px; /* Adjust padding as needed */
-    margin: 5px; /* Add margin for spacing */
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-.btn-room-type:hover {
-    background-color: #218838;
-}
+    .btn-room-type {
+        background-color:#AC3B61;
+
+    }
+
+    .btn-room-type:hover {
+        background-color: #6c757d;
+    }
+
+    .order h2 {
+        margin-bottom: 30px;
+    }
+
 </style>
 
     <title>Rooms</title>

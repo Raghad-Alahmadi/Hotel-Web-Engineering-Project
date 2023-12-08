@@ -1,14 +1,5 @@
 <?php
 
-session_start();
-
-// Check if the user is not logged in
-// Check if the user is logged in
-if (!isset($_SESSION["username"])) {
-    // Redirect to the login page if not logged in
-    header("Location: /html/Login/login.php");
-    exit();
-}
 // Access the user's name from the session
 $userName = $_SESSION["username"];
 
@@ -123,7 +114,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                         </div>
                         
-                        <a href="javascript:void(0);" class="menu-btn" onclick="openModal(this)" data-room="Suite Room" data-description="Indulge in luxury and sophistication..." data-price="1315">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Suite Room" data-description="Indulge in luxury and sophistication..." data-price="1315">Book Now</a>
                     </div>
                 </div>
 
@@ -143,7 +134,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <a href="javascript:void(0);" class="menu-btn" onclick="openModal(this)" data-room="Presidential Suite" data-description="Experience the epitome of luxury..." data-price="5000">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Presidential Suite" data-description="Experience the epitome of luxury..." data-price="5000">Book Now</a>
                     </div>
                 </div>
 
@@ -163,7 +154,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star-half-stroke"></i>
                         
                         </div>
-                        <a href="javascript:void(0);" class="menu-btn" onclick="openModal(this)" data-room="Double Room" data-description="Elevate your stay in our Double Room..." data-price="900">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Double Room" data-description="Elevate your stay in our Double Room..." data-price="900">Book Now</a>
                     </div>
                 </div>
             </div>

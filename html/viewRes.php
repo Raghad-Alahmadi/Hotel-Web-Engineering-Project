@@ -39,7 +39,9 @@ $result = $conn->query($sql);
         background-color: #f8f9fa;
     }
 
-    
+    table {
+        margin-top: 60px; /* Added margin-top for spacing */
+    }
 
     .content {
         margin: 200px;
@@ -73,6 +75,9 @@ $result = $conn->query($sql);
 .btn-room-type:hover {
     background-color: #218838;
 }
+.order h2 {
+        margin-bottom: 60px;
+    }
 </style>
 
     <title>Rooms</title>
@@ -100,44 +105,42 @@ $result = $conn->query($sql);
                         <h2>Reserved Rooms</h2>
 
 
-
-                        <table class="table table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Room ID</th>
-                                    <th>Username</th>
-                                    <th>Room ID</th>
-                                    <th>Room Type</th>
-                                    <th>Check-In Date</th>
-                                    <th>Check-out Date</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="availableRoomsTableBody">
-                            <?php
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<tr>';
-                                echo '<td>' . $row['ReservationID'] . '</td>';
-                                echo '<td>' . $row['CustomerName'] . '</td>';
-                                echo '<td>' . $row['RoomID'] . '</td>';
-                                echo '<td>' . $row['Room_type'] . '</td>';
-                                echo '<td>' . $row['CheckInDate'] . '</td>';
-                                echo '<td>' . $row['CheckOutDate'] . '</td>';
-                                echo '<td>' . $row['Quantity'] . '</td>';
-                                echo '<td>' . $row['Total'] . '</td>';
-                                echo '<td><button class="btn-edit" data-id="' . $row['ReservationID'] . '">Edit</button></td>';
-                                echo '<td><button class="btn-delete-row" data-id="' . $row['ReservationID'] . '">Delete</button></td>';
-                                echo '</tr>';
-                            }
-                            ?>
-                        </tbody>
-
-                            
-                        </table>
+                        <?php if ($result->num_rows > 0): ?>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Room ID</th>
+                <th>Username</th>
+                <th>Room ID</th>
+                <th>Room Type</th>
+                <th>Check-In Date</th>
+                <th>Check-out Date</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="availableRoomsTableBody">
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row['ReservationID'] ?></td>
+                    <td><?= $row['CustomerName'] ?></td>
+                    <td><?= $row['RoomID'] ?></td>
+                    <td><?= $row['Room_type'] ?></td>
+                    <td><?= $row['CheckInDate'] ?></td>
+                    <td><?= $row['CheckOutDate'] ?></td>
+                    <td><?= $row['Quantity'] ?></td>
+                    <td><?= $row['Total'] ?></td>
+                    <td><button class="btn-edit" data-id="<?= $row['ReservationID'] ?>">Edit</button></td>
+                    <td><button class="btn-delete-row" data-id="<?= $row['ReservationID'] ?>">Delete</button></td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>No reservations found.</p>
+<?php endif; ?>
                     </div>
                 </div>
                             </section>

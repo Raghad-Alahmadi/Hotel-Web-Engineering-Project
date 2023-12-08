@@ -136,7 +136,7 @@ $result = $conn->query($sql);
                 </a>
             </li>
             <li>
-                <a href="/html/admin-dashboard/reserved.html">
+                <a href="/html/admin-dashboard/reserved.php">
                     <i class='bx bx-calendar-check'></i>
                     <span class="text">View Reservations</span>
                 </a>

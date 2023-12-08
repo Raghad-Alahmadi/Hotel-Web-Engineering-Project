@@ -26,17 +26,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $totalPrice = $quantity * $price;
 
     // SQL query to insert into the reservations table
-    $sql = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Total)
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sisssii", $username, $roomId, $roomType, $checkInDate, $checkOutDate, $quantity, $totalPrice);
 
     if ($stmt->execute()) {
+
          // Set room availability to 0 after successful reservation
          $sqlUpdateAvailability = "UPDATE rooms SET Availability = 0 WHERE RoomID = ?";
          $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
          $stmtUpdateAvailability->bind_param("i", $roomId);
+         header("Location: /php/index.php?CustomerName=$username&roomID=$roomId&room_type=$roomType&checkInDate=$checkInDate&checkOutDate=$checkOutDate&quantity=$quantity&price=$totalPrice");
+
+    //     header("Location: /php/index.php?roomId=$roomId&roomType=$roomType&price=$totalPrice");
+
 
     } else {
         echo "Error: " . $stmt->error;

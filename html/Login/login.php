@@ -40,7 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Regular user login successful
                 session_start();
                 $_SESSION["username"] = $loginUsername;
-                header("Location: /html/home.html"); // Redirect to home page
+                $redirectUrl = isset($_SESSION['prev_page']) ? $_SESSION['prev_page'] : '/html/home.html';
+                header("Location: " . $redirectUrl);
                 exit();
             }
         } else {
@@ -72,7 +73,7 @@ $conn->close();
     <link rel="stylesheet" href="/css/stylesLogin.css">
 </head>
 
-<body>
+<body style="background-color: #f8f9fa;">
 
 <nav>
     <a href="/html/home.html" class="logo">MAGNOLIA</a>
@@ -81,8 +82,8 @@ $conn->close();
             <li><a href="/html/home.html">HOME</a></li>
             <li><a href="/html/AboutUs.html">ABOUT US</a></li>
             <li><a href="/html/ContactUs.html">CONTACT US</a></li>
-            <li><a href="/html/Rooms.html">ROOMS</a></li>
-            <li><a href="/html/Login/login.html">LOGIN</a></li>
+            <li><a href="/html/Rooms.php">ROOMS</a></li>
+            <li><a href="/html/Login/login.php">LOGIN</a></li>
         </ul>
     </div>
 </nav>
