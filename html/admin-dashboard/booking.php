@@ -30,16 +30,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sisssii", $username, $roomId, $roomType, $checkInDate, $checkOutDate, $quantity, $totalPrice);
+    $sqlUpdateAvailability = "UPDATE rooms SET Availability = 0 WHERE RoomID = ?";
+    $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
+    $stmtUpdateAvailability->bind_param("i", $roomId);
 
     if ($stmt->execute()) {
-        echo "Reservation successful!";
-         // Set room availability to 0 after successful reservation
-         $sqlUpdateAvailability = "UPDATE rooms SET Availability = 0 WHERE RoomID = ?";
-         $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
-         $stmtUpdateAvailability->bind_param("i", $roomId);
+        echo '
+        <!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <title>Success Modal Example</title>
+        </head>
+        
+        <body>
+        
+            <!-- Your page content goes here -->
+        
+            <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true" style="display: block;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title" id="successModalLabel">Success</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Reservation has been done successfully!</p>
+                        </div>
+                        <div class="modal-footer" style="background-color: #f8f9fa; padding: 10px; border-top: 1px solid #dee2e6;">
+                        <button type="button" class="btn-small" onclick="window.history.back();">Go back</button>
+                        <button type="button" class="btn-small cancel-btn" onclick="closeModal();">Cancel</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+        </body>
+        
+        </html>';
+        // Execute the update availability statement
+            $stmtUpdateAvailability->execute();
+            $stmtUpdateAvailability->close();
 
-    } else {
-        echo "Error: " . $stmt->error;
+    }else {
+        echo '<p class="error-message">Error in reservation: ' . $stmt->error . '</p>';
     }
 
     $stmt->close();
@@ -144,10 +188,26 @@ $conn->close();
     </section>
 
     <style>
+    .table-data {
+        position: relative;
+        height: 100vh;
+    }
+
+    .order {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px; /* Adjust the width as needed */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
 
     label {
         display: flex;
         margin-bottom: 5px;
+        width: 100%;
     }
 
     input[type="text"],
@@ -156,9 +216,10 @@ $conn->close();
         width: 100%;
         padding: 8px;
         margin-bottom: 10px;
-        box-sizing: border-box;
+ 
     }
 
+ 
     input[type="submit"] {
         background-color: #007bff;
         color: white;
@@ -167,7 +228,8 @@ $conn->close();
         border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        align-items: center;
+        display: block;
+        margin: 0 auto; /* Center the button */
     }
 
     input[type="submit"]:hover {

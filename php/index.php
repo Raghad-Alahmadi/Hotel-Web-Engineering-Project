@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     $stmtReservation->execute();
 
     // Payment
-    $sqlPayment = "INSERT INTO payment (Name, Cardnumber, Exmonth, Exyear, CVV)
+    $sqlPayment = "INSERT INTO payment (CustomerName, Cardnumber, Exmonth, Exyear, CVV)
                    VALUES (?, ?, ?, ?, ?)";
     $stmtPayment = $conn->prepare($sqlPayment);
     $stmtPayment->bind_param("sssss", $cardname, $cardnumber, $expmonth, $expyear, $cvv);

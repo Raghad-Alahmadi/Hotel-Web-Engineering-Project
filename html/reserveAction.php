@@ -68,12 +68,17 @@ $conn->close();
         padding: 0;
         box-sizing: border-box;
         background-color: #f8f9fa;
+        background: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/375847903.jpg?k=3103212f0f694b5fcc4deec9d0025d37621c0e4e305c7b64a387b0d8b4f000ce&o=&hp=1') center/cover no-repeat fixed;
+
     }
 
-    .content {
-        margin: 200px;
-        background-color: whitesmoke; /* Updated background color */
+
+    .order{
+        margin: 100px 400px;
+        padding: 20px; 
+        background-color: rgba(172, 59, 97, 0.9) !important;
     }
+
 
     .btn-book-now {
         background-color: #007bff;
@@ -93,15 +98,9 @@ $conn->close();
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        background-color: #f8f9fa;
+        background-color: #AC3B61;
     }
 
-    .content {
-        margin: 400px;
-        margin-top:80;
-        background-color: whitesmoke;
-        padding: 20px; /* Add some padding for better spacing */
-    }
 
     .btn-book-now {
         background-color: #007bff;
@@ -119,23 +118,23 @@ $conn->close();
 
     /* Updated styles for form labels and inputs */
     form {
-        display: flex;
-        flex-direction: column;
-        align-items:center;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
 
-    label {
-        margin-bottom: 8px;
-        text-align: left;
-    }
+form label {
+    margin-bottom: 8px;
+    text-align: left;
+}
 
-    input {
-        width: 70%;
-        margin-bottom: 16px;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
+form input {
+    width: 70%;
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
     .modal-content {
             background-color: #f8f9fa;
         }
@@ -143,6 +142,21 @@ $conn->close();
         .modal-footer {
             justify-content: center;
         }
+
+        @media (max-width: 768px) {
+        .content {
+            margin: 10px;
+        }
+
+        .btn-book-now {
+            padding: 8px; /* Adjusted padding for smaller screens */
+        }
+
+        input {
+            width: 100%; /* Full width for smaller screens */
+        }
+    }
+    </style>
 </style>
 
     <title>Rooms</title>
@@ -162,7 +176,7 @@ $conn->close();
             </div>
         </nav>
 
-        <section class="content">
+
 
                 <div class="table-data">
                     <div class="order">
@@ -190,7 +204,6 @@ $conn->close();
                 </form>
                     </div>
                 </div>
-    </section>
 
   <!-- Bootstrap Modal -->
 <!---

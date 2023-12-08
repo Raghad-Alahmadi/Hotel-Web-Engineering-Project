@@ -58,17 +58,20 @@ $conn->close();
         padding: 0;
         box-sizing: border-box;
         background-color: #f8f9fa;
+        background: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/375847903.jpg?k=3103212f0f694b5fcc4deec9d0025d37621c0e4e305c7b64a387b0d8b4f000ce&o=&hp=1') center/cover no-repeat fixed;
+
     }
 
     
     table {
         margin-top: 50px; /* Added margin-top for spacing */
     }
-    .content {
-        margin: 200px;
-        background-color: whitesmoke; /* Updated background color */
-    }
 
+    .order{
+        margin: 100px 200px;
+        padding: 20px; 
+        background-color: rgba(172, 59, 97, 0.9) !important;
+    }
 
 .btn {
         border: none;
@@ -114,6 +117,17 @@ $conn->close();
     .order h2 {
         margin-bottom: 30px;
     }
+    .footer {
+
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
     @media (max-width: 768px) {
 
             .content {
@@ -152,7 +166,7 @@ $conn->close();
             </div>
         </nav>
 
-        <section class="content">
+        
 
                 <div class="table-data">
                     <div class="order">
@@ -185,7 +199,7 @@ $conn->close();
                                         echo '<tr data-room-type="' . $row['Room_type'] . '">';
                                         echo '<td>' . $row['RoomID'] . '</td>';
                                         echo '<td>' . $row['Room_type'] . '</td>';
-                                        echo '<td>' . $row['Price'] . '</td>';
+                                        echo '<td>' . $row['Price'] . ' SAR</td>';
                                         echo '<td><button class="btn btn-primary btn-book-now" data-room-id="' . $row['RoomID'] . '">Book Now</button></td>';
                                         echo '</tr>';
                                     }
@@ -194,7 +208,7 @@ $conn->close();
                         </table>
                     </div>
                 </div>
-                            </section>
+                           
             
         <!-- Your JavaScript and jQuery scripts here -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -269,6 +283,9 @@ $('.btn-view-reservations').click(function () {
     
 
 </body>
+<section class="footer">
+        <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
+    </section>
 
 </html>
 
@@ -279,16 +296,7 @@ $conn->close();
 
 
 
-    <section class="footer">
-        <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
-    </section>
+  
 
 
-
-
-
-
-    <script src="/JavaScript/client.js"></script>
-</body>
-</html>
 

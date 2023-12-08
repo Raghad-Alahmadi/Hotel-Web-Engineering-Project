@@ -55,6 +55,21 @@ $conn->close();
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!--CSS-->
     <link rel="stylesheet" href="style.css">
+    <style>
+    .btn-book-now {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-book-now:hover {
+        background-color: #0056b3;
+    }
+</style>
 
     <title>Available Rooms - Magnolia Dashboard</title>
 </head>

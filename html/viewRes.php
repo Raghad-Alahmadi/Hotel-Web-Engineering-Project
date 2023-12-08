@@ -37,15 +37,18 @@ $result = $conn->query($sql);
         padding: 0;
         box-sizing: border-box;
         background-color: #f8f9fa;
+        background: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/375847903.jpg?k=3103212f0f694b5fcc4deec9d0025d37621c0e4e305c7b64a387b0d8b4f000ce&o=&hp=1') center/cover no-repeat fixed;
+
     }
 
     table {
         margin-top: 60px; /* Added margin-top for spacing */
     }
 
-    .content {
-        margin: 200px;
-        background-color: whitesmoke; /* Updated background color */
+    .order{
+        margin: 100px 200px;
+        padding: 20px; 
+        background-color: rgba(172, 59, 97, 0.9) !important;
     }
 
     .btn-book-now {
@@ -79,6 +82,17 @@ $result = $conn->query($sql);
         margin-bottom: 60px;
     }
 
+    .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
     @media (max-width: 768px) {
             .content {
                 margin: 5px;
@@ -97,7 +111,7 @@ $result = $conn->query($sql);
         }
 </style>
 
-    <title>Rooms</title>
+    <title>Your Reserved Rooms</title>
 </head>
 <body>
     <section class="head">
@@ -114,12 +128,12 @@ $result = $conn->query($sql);
             </div>
         </nav>
 
-        <section class="content">
+
 
                 <div class="table-data">
                     <div class="order">
                         <!-- Bootstrap table -->
-                        <h2>Reserved Rooms</h2>
+                        <h2>Your Reserved Rooms</h2>
 
 
                         <?php if ($result->num_rows > 0): ?>
@@ -160,8 +174,7 @@ $result = $conn->query($sql);
 <?php endif; ?>
                     </div>
                 </div>
-                            </section>
-            
+                         
         <!-- Your JavaScript and jQuery scripts here -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

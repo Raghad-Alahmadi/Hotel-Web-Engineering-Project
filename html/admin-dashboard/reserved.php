@@ -32,7 +32,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="style.css">
     <style>
     .btn-edit,
-    .btn-delete {
+    .btn-delete-row {
         background-color: #28a745; /* Green background color */
         color: white; /* White text color */
         padding: 8px 16px; /* Padding */
@@ -43,7 +43,7 @@ $result = $conn->query($sql);
     }
 
     .btn-edit:hover,
-    .btn-delete:hover {
+    .btn-delete-row:hover {
         background-color: #218838; /* Darker green on hover */
     }
 
@@ -79,7 +79,8 @@ $result = $conn->query($sql);
 <style>
     #deleteModal .modal-body .btn-delete,
     #deleteModal .modal-body .btn-cancel {
-        margin: 10px;
+        margin: auto;
+        margin-top: 10px;
         padding: 10px 20px; /* Adjust the padding values as needed */
         border: none;
         border-radius: 5px;
