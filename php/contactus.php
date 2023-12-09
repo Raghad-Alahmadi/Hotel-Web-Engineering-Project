@@ -1,5 +1,5 @@
 <?php 
-include('contactform.php');
+include('contactusform.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,31 +65,27 @@ include('contactform.php');
                 <form class="contact-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method ="POST">
                     <h2>Send Message</h2>
                     <div class="inputbox">
-                      <input type="text" name="fullName" id="fullName" value= "<?php echo $fullName?>" placeholder="Full Name">
-                      <div><?php echo $errors['fullNameError'] ?></div>
+                      <input type="text" name="fullName" id="fullName" placeholder="Full Name" required>
                     </div>
 
                     <div class="inputbox">
-                      <input type="text" name="email" id="email" value = "<?php echo $email?>" placeholder="Email">
-                      <div><?php echo $errors['emailError'] ?></div>
+                      <input type="text" name="email" id="email"  placeholder="Email" required>
                     </div>
 
                     <div class="inputbox">
-                      <input type="text" name="subject" id="subject" value = "<?php echo $subject?>" placeholder="Subject">
-                      <div><?php echo $errors['subjectError'] ?></div>
+                      <input type="text" name="subject" id="subject" placeholder="Subject" required>
                     </div>
 
                     <div class="inputbox">
-                      <textarea name="message" placeholder="Type your problem" value = <?php echo $message ?>></textarea>
-                      <div><?php echo $errors['messageError'] ?></div>
+                      <textarea name="message" placeholder="Type your problem" required></textarea>
                     </div>
 
                     <div class="inputbox">
                         <input class= "submit" type="submit" name="submit" onclick="openPopup()" value="Send">
                     </div>
                 </form>
-            </div>
-            <div class="popup" id="popup">
+           </div>
+           <div class="popup" id="popup">
               <i class="fa-solid fa-paper-plane"></i>
               <h2>Thank You for reaching out!</h2>
               <h3>we'll get back to you as soon as possible, your patience is truly appreciated.</h3>
@@ -100,7 +96,7 @@ include('contactform.php');
 </body>
 </html>
 <script>
-    let popup = document.getElementById('popup')
+   let popup = document.getElementById('popup')
     function openPopup(){
         popup.classList.add('open-popup')
     }
@@ -168,7 +164,7 @@ nav ul li a{
     padding: 80px 100px;
     display: flex;
     flex-direction: column;
-    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(/images/img-one-only-the-palm-hotel-dubai-29.jpeg);
+    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(cc574782-f989-4ee5-b79d-689f5453d3eb.jpg);
     background-size: cover ;
 }
 .content{
@@ -280,6 +276,7 @@ nav ul li a{
     font-size: 18px;
     transition : transform 0.2s;
 }
+
 .contactform .inputbox input[type = "submit"]:active{
     transform: scale(0.95);
 }
@@ -321,6 +318,7 @@ nav ul li a{
    font-weight: 400;
    text-align: center;
 }
+
 .popup button{
     background: #917763;
     color: whitesmoke;
