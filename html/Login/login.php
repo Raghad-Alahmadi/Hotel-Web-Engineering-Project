@@ -79,7 +79,7 @@ $conn->close();
         <ul>
             <li><a href="/html/home.html">HOME</a></li>
             <li><a href="/html/AboutUs.html">ABOUT US</a></li>
-            <li><a href="/html/ContactUs.html">CONTACT US</a></li>
+            <li><a href="/php/contactus.php">CONTACT US</a></li>
             <li><a href="/html/Rooms.php">ROOMS</a></li>
             <li><a href="/html/Login/login.php">LOGIN</a></li>
         </ul>

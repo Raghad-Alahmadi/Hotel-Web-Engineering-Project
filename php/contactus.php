@@ -13,6 +13,18 @@ include('contactform.php');
 </head>
 <body>
     <section class="contact">
+    <div class="navbar">
+
+            <nav>
+                <ul>
+                    <li><a href="/html/home.html">HOME</a></li>
+                    <li><a href="/html/AboutUs.html">ABOUT US</a></li>
+                    <li><a href="/php/contactus.php">CONTACT US</a></li>
+                    <li><a href="/html/Rooms.php">ROOMS</a></li>
+                    <li><a href="/html/Login/login.php">LOGIN</a></li>
+                </ul>
+            </nav>
+        </div>
         <div class="content">
             <h2>Contact Us</h2>
             <p>we enjoy to listening you problems and inquiries, so that e can reach your aspirations,
@@ -156,7 +168,7 @@ nav ul li a{
     padding: 80px 100px;
     display: flex;
     flex-direction: column;
-    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(cc574782-f989-4ee5-b79d-689f5453d3eb.jpg);
+    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(/images/img-one-only-the-palm-hotel-dubai-29.jpeg);
     background-size: cover ;
 }
 .content{

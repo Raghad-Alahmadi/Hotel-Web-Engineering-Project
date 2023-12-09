@@ -21,13 +21,7 @@ if (isset($_POST['submit'])) {
 
   // If form validation is successful, proceed with reservation and payment
 
-    // Reservation
-    $sqlReservation = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Total)
-                      VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    $stmtReservation = $conn->prepare($sqlReservation);
-    $stmtReservation->bind_param("ssssssi", $username, $roomId, $roomType, $checkInDate, $checkOutDate, $quantity, $totalPrice);
-    $stmtReservation->execute();
 
     // Payment
     $sqlPayment = "INSERT INTO payment (CustomerName, Cardnumber, Exmonth, Exyear, CVV)
@@ -203,7 +197,7 @@ if (isset($_POST['submit'])) {
                 <br><input type="checkbox" checked="checked" name="savecard">Save card details for next time
                 </label>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b> <?php echo $price. " SAR"; ?></b></span></p>
+                <p>Total <span class="price" style="color:black"><b> <?php echo $price; ?></b></span></p>
                 <p class="VAT">The total cost includes a 15% VAT</p>
                 <input type="submit" name="submit" value="Continue to checkout" class="btn">
         </form>

@@ -57,7 +57,7 @@ $conn->close();
     <link rel="stylesheet" href="style.css">
     <style>
     .btn-book-now {
-        background-color: #007bff;
+        background-color: #AC3B61 !important;
         color: white;
         border: none;
         padding: 10px 15px;
@@ -110,21 +110,13 @@ $conn->close();
     </section>
     <!-- CONTENT -->
     <section id="content">
-        <!-- NAVBAR -->
-        <nav>
-            <i class='bx bx-menu' ></i>
-            <a href="#" class="profile"style="margin-left: auto;">
-                <img src="user.png" >
-            </a>
-        </nav>
+
         <!-- MAIN -->
         <main>
             <div class="table-data">
                 <div class="order">
                     <div class="head">
                         <h3>Available Rooms</h3>
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
                     </div>
                     <table>
                         <thead>

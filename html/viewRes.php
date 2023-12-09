@@ -48,7 +48,7 @@ $result = $conn->query($sql);
     .order{
         margin: 100px 200px;
         padding: 20px; 
-        background-color: rgba(172, 59, 97, 0.9) !important;
+        background-color: rgba(124, 100, 124, 0.9) !important;
     }
 
     .btn-book-now {
@@ -148,8 +148,6 @@ $result = $conn->query($sql);
                 <th>Check-out Date</th>
                 <th>Quantity</th>
                 <th>Total</th>
-                <th>Edit</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody id="availableRoomsTableBody">
@@ -162,9 +160,7 @@ $result = $conn->query($sql);
                     <td><?= $row['CheckInDate'] ?></td>
                     <td><?= $row['CheckOutDate'] ?></td>
                     <td><?= $row['Quantity'] ?></td>
-                    <td><?= $row['Total'] ?></td>
-                    <td><button class="btn-edit" data-id="<?= $row['ReservationID'] ?>">Edit</button></td>
-                    <td><button class="btn-delete-row" data-id="<?= $row['ReservationID'] ?>">Delete</button></td>
+                    <td><?= $row['Total'] ?> SAR</td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
@@ -181,28 +177,7 @@ $result = $conn->query($sql);
 
 
     
-<script>
-            $(document).ready(function () {
-                $('.btn-edit').click(function () {
-                    var reservationId = $(this).data('id');
-                    $('#editForm').attr('action', 'editRes.php?reservationId=' + reservationId);
-                    $('#editForm [name="reservationId"]').val(reservationId);
-                    $('#editModal').modal('show');
-                });
-            });
-        </script>
 
-<script>
-    $(document).ready(function () {
-        // Open delete modal when delete button is clicked
-        $('.btn-delete-row').click(function () {
-            var reservationId = $(this).data('id');
-            $('#deleteForm').attr('action', 'deleteRes.php?reservationId=' + reservationId);
-            $('#deleteForm [name="reservationId"]').val(reservationId);
-            $('#deleteModal').modal('show');
-        });
-    });
-</script>
 </body>
 
 </html>
@@ -215,9 +190,6 @@ $result = $conn->query($sql);
     <section class="footer">
         <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
     </section>
-
-
-
 
 
 

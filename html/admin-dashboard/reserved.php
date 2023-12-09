@@ -31,9 +31,13 @@ $result = $conn->query($sql);
     <!--CSS-->
     <link rel="stylesheet" href="style.css">
     <style>
+
+.brand {
+    color: #AC3B61 !important;
+}
     .btn-edit,
     .btn-delete-row {
-        background-color: #28a745; /* Green background color */
+        background-color: #AC3B61 !important; /* Green background color */
         color: white; /* White text color */
         padding: 8px 16px; /* Padding */
         border: none; /* No border */
@@ -41,6 +45,11 @@ $result = $conn->query($sql);
         cursor: pointer; /* Pointer cursor */
         margin-right: 5px; /* Margin between buttons */
     }
+
+.btn-edit:hover,
+.btn-delete-row:hover {
+    background-color: #8C285C !important; 
+}
 
     .btn-edit:hover,
     .btn-delete-row:hover {
@@ -152,20 +161,14 @@ $result = $conn->query($sql);
     </section>
 
     <section id="content">
-        <nav>
-            <i class='bx bx-menu'></i>
-            <a href="#" class="profile" style="margin-left: auto;">
-                <img src="user.png">
-            </a>
-        </nav>
+
 
         <main>
             <div class="table-data">
                 <div class="order">
                     <div class="head">
                         <h3>Reserved Rooms</h3>
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
+
                     </div>
                     <table>
                         <thead>

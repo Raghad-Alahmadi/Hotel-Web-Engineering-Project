@@ -59,8 +59,8 @@ if ($conn->connect_error) {
                 <ul>
                     <li><a href="/html/home.html">HOME</a></li>
                     <li><a href="/html/AboutUs.html">ABOUT US</a></li>
-                    <li><a href="/html/ContactUs.html">CONTACT US</a></li>
-                    <li><a href="/html/Rooms.html">ROOMS</a></li>
+                    <li><a href="/php/contactus.php">CONTACT US</a></li>
+                    <li><a href="/html/Rooms.php">ROOMS</a></li>
                     <li><a href="/html/Login/login.php">LOGIN</a></li>
 
                 </ul>
@@ -94,7 +94,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Single Room" data-description="Step into simplicity and comfort..." data-price="600">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                         </div>
                         
-                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Suite Room" data-description="Indulge in luxury and sophistication..." data-price="1315">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Presidential Suite" data-description="Experience the epitome of luxury..." data-price="5000">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
 
@@ -154,7 +154,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star-half-stroke"></i>
                         
                         </div>
-                        <a href="/html/book.php" class="menu-btn" onclick="openModal(this)" data-room="Double Room" data-description="Elevate your stay in our Double Room..." data-price="900">Book Now</a>
+                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
             </div>

@@ -70,7 +70,7 @@ $conn->close();
     .order{
         margin: 100px 200px;
         padding: 20px; 
-        background-color: rgba(172, 59, 97, 0.9) !important;
+        background-color: rgba(124, 100, 124, 0.9) !important;
     }
 
 .btn {
@@ -98,7 +98,7 @@ $conn->close();
     }
 
     .btn-book-now {
-        background-color: #007bff;
+        background-color: #AC3B61;
     }
 
     .btn-book-now:hover {
@@ -278,6 +278,15 @@ $conn->close();
 $('.btn-view-reservations').click(function () {
     var viewReservationsPage = "/html/viewRes.php";
     window.location.href = viewReservationsPage;
+
+    var isLoggedIn = <?php echo isset($_SESSION['username']) ? 'true' : 'false'; ?>;
+
+            if (isLoggedIn) {
+                window.location.href = viewReservationsPage;
+            } else {
+                alert("Please log in to make a reservation.");
+                window.location.href = "/html/Login/login.php";
+            }
 });
 </script>
     

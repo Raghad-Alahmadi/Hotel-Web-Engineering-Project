@@ -18,35 +18,31 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect and sanitize user input
     $resetEmail = $conn->real_escape_string($_POST["email"]);
+    $newPassword = $conn->real_escape_string($_POST["new_password"]);
 
     // Check if the email exists in the database
     $checkEmailQuery = "SELECT * FROM users WHERE email='$resetEmail'";
     $result = $conn->query($checkEmailQuery);
 
     if ($result->num_rows > 0) {
-        // Email exists, generate a reset token and send the reset link (not implemented in this example)
-        $resetToken = generateResetToken(); // Implement your own function to generate a unique reset token
-        // Send the reset link to the user's email (not implemented in this example)
+        // Email exists, update the password
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        $updatePasswordQuery = "UPDATE users SET password='$hashedPassword' WHERE email='$resetEmail'";
+        
+        if ($conn->query($updatePasswordQuery) === TRUE) {
+            // Password updated successfully
+            header("Location: /html/Login/login.php");
+            exit();
+        } else {
+            $resetError = "Error updating password: " . $conn->error;
+        }
 
-        // Redirect to a success message or confirmation page
-        header("Location: /html/Login/reset-success.php");
-        exit();
-    } else {
-        // Email not found
-        $resetError = "Email not found. Please check your email address.";
     }
 }
 
 // Close the database connection
 $conn->close();
-
-// Implement your own function to generate a unique reset token
-function generateResetToken()
-{
-    // Your code to generate a unique reset token
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,21 +76,19 @@ function generateResetToken()
         }
         ?>
         <form action="" method="post">
-            <h1>Forgot Password</h1>
+    <h1>Reset Password</h1>
 
-            <p>Enter the email address associated with your account, and we'll send you a link to reset your password.</p>
+    <div class="box">
+        <label>Your new password</label>
+        <input type="password" name="new_password" id="new_password" placeholder="Enter your new password" required>
+    </div>
 
-            <div class="box">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email" required>
-            </div>
+    <button type="submit" class="btn">Reset password</button>
 
-            <button type="submit" class="btn">Send Reset Link</button>
-
-            <div class="login-link">
-                <p>Remember your password? <a href="/html/Login/login.php">Login</a></p>
-            </div>
-        </form>
+    <div class="login-link">
+        <p>Remember your password? <a href="/html/Login/login.php">Login</a></p>
+    </div>
+</form>
     </div>
 </div>
 

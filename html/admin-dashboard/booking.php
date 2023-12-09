@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Calculate total price
-    $totalPrice = $quantity * $price;
+    $totalPrice = $price;
 
     // SQL query to insert into the reservations table
     $sql = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Total)
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sisssii", $username, $roomId, $roomType, $checkInDate, $checkOutDate, $quantity, $totalPrice);
-    $sqlUpdateAvailability = "UPDATE rooms SET Availability = 0 WHERE RoomID = ?";
+    $sqlUpdateAvailability = "UPDATE rooms SET availability = 0 WHERE RoomID = ?";
     $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
     $stmtUpdateAvailability->bind_param("i", $roomId);
 
@@ -143,13 +143,7 @@ $conn->close();
     </section>
     <!-- CONTENT -->
     <section id="content">
-        <!-- NAVBAR -->
-        <nav>
-            <i class='bx bx-menu' ></i>
-            <a href="#" class="profile"style="margin-left: auto;">
-                <img src="user.png" >
-            </a>
-        </nav>
+
         <!-- MAIN -->
         <main>
         <h1>Reservation Details</h1>
@@ -205,19 +199,19 @@ $conn->close();
     }
 
     label {
-        display: flex;
-        margin-bottom: 5px;
-        width: 100%;
-    }
+    display: block !important;
+    margin-bottom: 5px !important;
+    width: 100% !important;
+}
 
-    input[type="text"],
-    input[type="date"],
-    input[type="number"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
- 
-    }
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    width: 100%  !important; /* Adjust as needed */
+    padding: 8px !important;
+    margin-bottom: 10px !important;
+    box-sizing: border-box !important;
+}
 
  
     input[type="submit"] {

@@ -60,7 +60,7 @@ function confirmBooking() {
     formData.append("userName", userName); // Add userName to the FormData
     
     // Send a POST request to the PHP script
-    fetch('/php/booking.php', {
+    fetch('/html/book.php', {
         method: 'POST',
         body: formData
     })

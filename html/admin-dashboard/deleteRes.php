@@ -19,6 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $reservationId);
 
+    $sqlUpdateAvailability = "UPDATE rooms SET Availability = 1 WHERE RoomID = ?";
+    $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
+    $stmtUpdateAvailability->bind_param("i", $roomId);
     if ($stmt->execute()) {
         echo '
         <!DOCTYPE html>

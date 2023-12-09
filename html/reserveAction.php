@@ -21,9 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $roomType = $_POST['roomType'];
     $price = $_POST['price'];
 
-
     // Calculate total price
-    $totalPrice = $quantity * $price;
+    $totalPrice = $price;
 
     // SQL query to insert into the reservations table
     $sql = "INSERT INTO reservations (CustomerName, RoomID, Room_Type, CheckInDate, CheckOutDate, Quantity, Total)
@@ -31,20 +30,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sisssii", $username, $roomId, $roomType, $checkInDate, $checkOutDate, $quantity, $totalPrice);
+    
+    $sqlUpdateAvailability = "UPDATE rooms SET availability = 0 WHERE RoomID = ?";
+    $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
+    $stmtUpdateAvailability->bind_param("i", $roomId);
 
     if ($stmt->execute()) {
-
-         // Set room availability to 0 after successful reservation
-         $sqlUpdateAvailability = "UPDATE rooms SET Availability = 0 WHERE RoomID = ?";
-         $stmtUpdateAvailability = $conn->prepare($sqlUpdateAvailability);
-         $stmtUpdateAvailability->bind_param("i", $roomId);
-         header("Location: /php/index.php?CustomerName=$username&roomID=$roomId&room_type=$roomType&checkInDate=$checkInDate&checkOutDate=$checkOutDate&quantity=$quantity&price=$totalPrice");
-
-    //     header("Location: /php/index.php?roomId=$roomId&roomType=$roomType&price=$totalPrice");
-
-
+        // Execute the update availability statement
+        if ($stmtUpdateAvailability->execute()) {
+            header("Location: /php/index.php?CustomerName=$username&roomID=$roomId&room_type=$roomType&checkInDate=$checkInDate&checkOutDate=$checkOutDate&quantity=$quantity&price=$totalPrice");
+        } else {
+            echo "Error updating availability: " . $stmtUpdateAvailability->error;
+        }
+        $stmtUpdateAvailability->close();
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error in reservation: " . $stmt->error;
     }
 
     $stmt->close();
@@ -52,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +75,7 @@ $conn->close();
     .order{
         margin: 100px 400px;
         padding: 20px; 
-        background-color: rgba(172, 59, 97, 0.9) !important;
+        background-color: rgba(124, 100, 124, 0.9) !important;
     }
 
 
@@ -143,20 +142,35 @@ form input {
             justify-content: center;
         }
 
-        @media (max-width: 768px) {
-        .content {
-            margin: 10px;
-        }
-
-        .btn-book-now {
-            padding: 8px; /* Adjusted padding for smaller screens */
-        }
-
-        input {
-            width: 100%; /* Full width for smaller screens */
-        }
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .order {
+        margin: 50px 200px;
     }
-    </style>
+}
+
+@media (max-width: 992px) {
+    .order {
+        margin: 50px 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .order {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .btn-book-now {
+        padding: 10px;
+    }
+
+    form input {
+        width: 100%;
+    }
+}
+
+
 </style>
 
     <title>Rooms</title>
