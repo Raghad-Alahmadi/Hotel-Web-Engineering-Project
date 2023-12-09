@@ -142,7 +142,7 @@ if (isset($_POST['submit'])) {
 
 
     <div class="container">
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="post">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="post" onsubmit="showModal(event)">
             <h1>Payment</h1>
             <hr>
                 <label class="acccard" for="acccard">Accepted Cards</label>
@@ -201,6 +201,15 @@ if (isset($_POST['submit'])) {
                 <p class="VAT">The total cost includes a 15% VAT</p>
                 <input type="submit" name="submit" value="Continue to checkout" class="btn">
         </form>
+        
+    <!-- MODAL POPUP -->
+    <div class="overlay" id="overlay" onclick="hideModal()"></div>
+        <div class="modal" id="myModal">
+        <span class="close" onclick="hideModal()">&times;</span>
+        <h3 class = "msg">Payment confirmed!</h3>
+        <p>Excited to welcome you to MAGNOLIA. Your reservation is all set!"</p>
+    </div>
+        
     <!--Session time out-->
     </div>
     <div id="sessionTimeoutWarning">Your session is about to expire. Do you want to continue?
@@ -347,6 +356,43 @@ span.price {
       cursor: pointer;
       font-weight: bold;
 }
+//**Modal CSS**//
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer; 
+} 
+
+.msg{
+  text-align: center; /* Center the text horizontally */
+  margin-top: 20px;   /* Adjust the top margin to vertically center the message */
+  font-size: 18px;
+}
 </style>
 
 <script>
@@ -404,6 +450,17 @@ function cardspace() {
 // Set up event listeners
 document.getElementById('ccnum').addEventListener('input', cardspace);
 document.getElementById('ccnum').addEventListener('paste', cardspace);
-
+    
+// modal 
+function showModal(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+    
+function hideModal() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
 
   </script>
