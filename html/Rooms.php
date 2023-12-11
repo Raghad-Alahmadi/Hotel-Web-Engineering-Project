@@ -94,7 +94,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
+                        <a href="/html/Rooms/Single.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                         </div>
                         
-                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
+                        <a href="/html/Rooms/Suite.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
+                        <a href="/html/Rooms/Presidential.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
 
@@ -154,7 +154,7 @@ if ($conn->connect_error) {
                             <i class="fa-solid fa-star-half-stroke"></i>
                         
                         </div>
-                        <a href="/html/book.php" class="menu-btn" >Book Now</a>
+                        <a href="/html/Rooms/Double.php" class="menu-btn" >Book Now</a>
                     </div>
                 </div>
             </div>
