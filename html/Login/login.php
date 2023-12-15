@@ -28,6 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($loginPassword, $row["password"])) {
+
+                        // Check if the "Remember Me" checkbox is checked
+                        $rememberMe = isset($_POST['rememberMe']) ? true : false;
+
+                        // Set a cookie with the username if "Remember Me" is checked
+                        if ($rememberMe) {
+                            setcookie('rememberedUsername', $loginUsername, time() + (30 * 24 * 60 * 60)); // Cookie expires in 30 days
+                        }
             // Check if the user is an admin
             if ($row["is_admin"]) {
                 // Admin login successful
@@ -108,7 +116,7 @@ $conn->close();
             </div>
 
             <div class="forget-remember">
-                <label for=""></label><input type="checkbox">Remember me
+            <input type="checkbox" name="rememberMe">Remember me
                 <a href="/html/Login/forgetPass.php">Forget Password ?</a>
             </div>
 
@@ -121,9 +129,6 @@ $conn->close();
     </div>
 </div>
 
-<section class="footer">
-    <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
-</section>
 
 </body>
 </html>

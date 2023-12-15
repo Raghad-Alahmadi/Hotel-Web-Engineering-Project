@@ -54,17 +54,39 @@ if ($conn->connect_error) {
     <section class="head">
         <nav>
             <a href="/html/home.html" class="logo">Magnolia</a>
-    
-            <div class="links">
-                <ul>
-                    <li><a href="/html/home.html">HOME</a></li>
-                    <li><a href="/html/AboutUs.html">ABOUT US</a></li>
-                    <li><a href="/php/contactus.php">CONTACT US</a></li>
-                    <li><a href="/html/Rooms.php">ROOMS</a></li>
-                    <li><a href="/html/Login/login.php">LOGIN</a></li>
+            <?php
+// Start the session
+session_start();
 
-                </ul>
-            </div>
+// Check if the user is logged in
+if (isset($_SESSION["username"])) {
+    // User is logged in, get the username
+    $userName = $_SESSION["username"];
+    // Display additional item in the navbar
+    echo "<div class='links'>
+            <ul>
+                <li><a href='/html/home.html'>HOME</a></li>
+                <li><a href='/html/AboutUs.html'>ABOUT US</a></li>
+                <li><a href='/php/contactus.php'>CONTACT US</a></li>
+                <li><a href='/html/Rooms.php'>ROOMS</a></li>
+                <li><a href='/html/viewRes.php'>VIEW RESERVATION</a></li>
+                <li><a href='/html/Login/logout.php'>LOGOUT</a></li>
+            </ul>
+          </div>";
+} else {
+    // User is not logged in, display regular navbar
+    echo "<div class='links'>
+            <ul>
+                <li><a href='/html/home.html'>HOME</a></li>
+                <li><a href='/html/AboutUs.html'>ABOUT US</a></li>
+                <li><a href='/php/contactus.php'>CONTACT US</a></li>
+                <li><a href='/html/Rooms.php'>ROOMS</a></li>
+                <li><a href='/html/Login/login.php'>LOGIN</a></li>
+            </ul>
+          </div>";
+}
+?>
+
         </nav>
         
 

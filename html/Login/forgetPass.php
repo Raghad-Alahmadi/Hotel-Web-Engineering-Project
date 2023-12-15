@@ -85,8 +85,9 @@ function generateResetToken()
             <p>Enter the email address associated with your account, and we'll send you a link to reset your password.</p>
 
             <div class="box">
-                <label for="email">Email Address</label>
+                <label for="email"></label>
                 <input type="email" name="email" id="email" placeholder="Enter your email" required>
+                <i class='bx bx-envelope'></i>
             </div>
 
             <button type="submit" class="btn">Send Reset Link</button>
@@ -97,10 +98,6 @@ function generateResetToken()
         </form>
     </div>
 </div>
-
-<section class="footer">
-    <p>&copy; 2023 Magnolia Hotel. All rights reserved.</p>
-</section>
 
 </body>
 </html>
