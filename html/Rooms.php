@@ -3,7 +3,6 @@
 // Access the user's name from the session
 $userName = $_SESSION["username"];
 
-// Replace these values with your actual database credentials
 $servername = "localhost";
 $username = "root";
 $password = "root";

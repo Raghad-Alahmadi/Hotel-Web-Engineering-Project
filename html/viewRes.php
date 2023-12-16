@@ -1,5 +1,5 @@
 <?php
-// Assume you have a database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the username from the session (you need to start the session first)
+// Get the username from the session 
 session_start();
 $user = $_SESSION['username'];
 
@@ -42,7 +42,7 @@ $result = $conn->query($sql);
     }
 
     table {
-        margin-top: 60px; /* Added margin-top for spacing */
+        margin-top: 60px; 
     }
 
     .order{
@@ -55,10 +55,10 @@ $result = $conn->query($sql);
         background-color: #007bff;
         color: white;
         border: none;
-        padding: 10px 15px; /* Adjust padding for a larger button */
+        padding: 10px 15px; 
         border-radius: 8px;
         cursor: pointer;
-        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        transition: background-color 0.3s ease; 
     }
 
     .btn-book-now:hover {
@@ -68,8 +68,8 @@ $result = $conn->query($sql);
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 8px 12px; /* Adjust padding as needed */
-    margin: 5px; /* Add margin for spacing */
+    padding: 8px 12px; 
+    margin: 5px; 
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -170,8 +170,7 @@ $result = $conn->query($sql);
 <?php endif; ?>
                     </div>
                 </div>
-                         
-        <!-- Your JavaScript and jQuery scripts here -->
+
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 

@@ -17,11 +17,8 @@ $checkOutDate = isset($_GET['checkOutDate']) ? $_GET['checkOutDate'] : '';
 $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : '';
 
 if (isset($_POST['submit'])) {
-  // ... (your existing form validation code)
 
   // If form validation is successful, proceed with reservation and payment
-
-
 
     // Payment
     $sqlPayment = "INSERT INTO payment (CustomerName, Cardnumber, Exmonth, Exyear, CVV)

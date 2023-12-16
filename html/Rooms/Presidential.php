@@ -169,7 +169,6 @@
                 <li><i class="fas fa-bed"></i> King-sized Bed</li>
                 <li><i class="fas fa-tv"></i> Smart TV</li>
                 <li> <i class="fas fa-swimming-pool"></i> Private Swimming Pool</li>
-                <!-- Add more features as needed -->
             </ul>
             <p><strong>Price:</strong> 5000 SAR per night</p>
         </section>

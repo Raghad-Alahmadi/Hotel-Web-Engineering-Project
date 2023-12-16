@@ -176,7 +176,6 @@ $conn->close();
     </div>
 </main>
         
-        <!-- Your JavaScript and jQuery scripts here -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
       
     </section>
@@ -192,7 +191,7 @@ $conn->close();
         top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 400px; /* Adjust the width as needed */
+        width: 400px;
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 8px;
@@ -207,7 +206,7 @@ $conn->close();
 input[type="text"],
 input[type="date"],
 input[type="number"] {
-    width: 100%  !important; /* Adjust as needed */
+    width: 100%  !important; 
     padding: 8px !important;
     margin-bottom: 10px !important;
     box-sizing: border-box !important;
@@ -223,7 +222,7 @@ input[type="number"] {
         cursor: pointer;
         transition: background-color 0.3s ease;
         display: block;
-        margin: 0 auto; /* Center the button */
+        margin: 0 auto; 
     }
 
     input[type="submit"]:hover {

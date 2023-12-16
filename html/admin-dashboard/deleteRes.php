@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Assume you have a database connection
+
     $servername = "localhost";
     $username = "root";
     $password = "root";

@@ -83,7 +83,7 @@ $conn->close();
         background-color: #007bff;
         color: white;
         border: none;
-        padding: 10px 15px; /* Adjust padding for a larger button */
+        padding: 10px 15px; 
         border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.3s ease; /* Add a smooth transition effect */
@@ -115,7 +115,7 @@ $conn->close();
         background-color: #0056b3;
     }
 
-    /* Updated styles for form labels and inputs */
+
     form {
     display: flex;
     flex-direction: column;
@@ -240,11 +240,10 @@ form input {
         </div>
     </div>
     -->  
-        <!-- Your JavaScript and jQuery scripts here -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script>
-        // Trigger the modal when the page loads (you can customize this based on your needs)
+        // Trigger the modal when the page loads 
         $(document).ready(function () {
             $('#reservationModal').modal('show');
         });

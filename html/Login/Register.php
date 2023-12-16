@@ -2,7 +2,6 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Backend processing for form submission
 
-    // Replace these values with your actual database credentials
     $servername = "localhost";
     $username = "root";
     $password = "root";

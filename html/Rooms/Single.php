@@ -176,7 +176,7 @@
                 <li><i class="fas fa-bed"></i> Queen-sized Bed</li>
                 <li><i class="fas fa-wifi"></i> Free Wi-Fi</li>
                 <li><i class="fas fa-coffee"></i> Coffee Maker</li>
-                <!-- Add more features as needed -->
+
             </ul>
             <p><strong>Price:</strong> 600 SAR per night</p>
         </section>

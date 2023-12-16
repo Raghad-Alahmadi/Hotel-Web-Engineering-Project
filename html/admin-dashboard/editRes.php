@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     $stmt->close();
-} // Add this closing parenthesis
+} 
 
 $conn->close();
 ?>

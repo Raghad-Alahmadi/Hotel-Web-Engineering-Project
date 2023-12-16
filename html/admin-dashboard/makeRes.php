@@ -1,5 +1,5 @@
 <?php
-// Assume you have a database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -144,13 +144,12 @@ $conn->close();
             </div>
         </main>
 
-        <!-- Your JavaScript and jQuery scripts here -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script>
     $(document).ready(function () {
-        // Existing JavaScript code
 
-        // Add the following click event handler for the "Book Now" button
+
+        //  click event handler for the "Book Now" button
         $('.btn-book-now').click(function () {
             var roomId = $(this).data('room-id');
             var roomType = $(this).closest('tr').find('td:nth-child(2)').text(); // Assuming room type is in the second column

@@ -1,6 +1,6 @@
 <?php
 session_start();
-// Assume you have a database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -209,8 +209,7 @@ $conn->close();
                     </div>
                 </div>
                            
-            
-        <!-- Your JavaScript and jQuery scripts here -->
+
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
@@ -257,7 +256,7 @@ $conn->close();
             });
         }
 
-        // Add the following click event handler for the "Book Now" button
+        //click event handler for the "Book Now" button
         $('.btn-book-now').click(function () {
             var roomId = $(this).data('room-id');
             var roomType = $(this).closest('tr').find('td:nth-child(2)').text();

@@ -1,5 +1,5 @@
 <?php
-// Assume you have a database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -90,7 +90,7 @@ $result = $conn->query($sql);
     #deleteModal .modal-body .btn-cancel {
         margin: auto;
         margin-top: 10px;
-        padding: 10px 20px; /* Adjust the padding values as needed */
+        padding: 10px 20px; 
         border: none;
         border-radius: 5px;
         justify-content: center;

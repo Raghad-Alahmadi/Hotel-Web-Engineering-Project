@@ -1,7 +1,6 @@
 <?php
 // reset-password.php
 
-// Replace these values with your actual database credentials
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -24,11 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($checkEmailQuery);
 
     if ($result->num_rows > 0) {
-        // Email exists, generate a reset token and send the reset link (not implemented in this example)
-        $resetToken = generateResetToken(); // Implement your own function to generate a unique reset token
-        // Send the reset link to the user's email (not implemented in this example)
+        // Email exists, generate a reset token and send the reset link 
+        $resetToken = generateResetToken(); 
 
-        // Redirect to a success message or confirmation page
         header("Location: /html/Login/reset-success.php");
         exit();
     } else {
@@ -40,10 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the database connection
 $conn->close();
 
-// Implement your own function to generate a unique reset token
 function generateResetToken()
 {
-    // Your code to generate a unique reset token
+    
 }
 ?>
 

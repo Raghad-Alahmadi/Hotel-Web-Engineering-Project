@@ -169,7 +169,7 @@
                 <li><i class="fas fa-bed"></i> King-sized Bed</li>
                 <li><i class="fas fa-tv"></i> Smart TV</li>
                 <li><i class="fas fa-coffee"></i> Coffee Maker</li>
-                <!-- Add more features as needed -->
+            
             </ul>
             <p><strong>Price:</strong> 1350 SAR per night</p>
         </section>
