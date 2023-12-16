@@ -16,9 +16,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $changeRoom = $_POST['changeRoom'];
     $checkInDate = $_POST['checkInDate'];
     $checkOutDate = $_POST['checkOutDate'];
-    $sql = "UPDATE reservations SET Quantity=?, Room_type=?, CheckInDate=?, CheckOutDate=? WHERE ReservationID=?";
+
+    // Fetch the price of the new room from the database
+    $priceSql = "SELECT Price FROM rooms WHERE Room_type=?";
+    $priceStmt = $conn->prepare($priceSql);
+    $priceStmt->bind_param("s", $changeRoom);
+    $priceStmt->execute();
+    $priceResult = $priceStmt->get_result();
+    $roomPrice = $priceResult->fetch_assoc()['Price'];
+    $priceStmt->close();
+
+    // Update the reservation with the new room and room price
+    $sql = "UPDATE reservations SET Quantity=?, Room_type=?, CheckInDate=?, CheckOutDate=?, Total=? WHERE ReservationID=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isssi", $editedQuantity, $changeRoom, $checkInDate, $checkOutDate, $reservationId);
+    $totalPrice = $roomPrice;  // Update total price directly with room price
+    $stmt->bind_param("isssii", $editedQuantity, $changeRoom, $checkInDate, $checkOutDate, $totalPrice, $reservationId);
     
     if ($stmt->execute()) {
         echo '
